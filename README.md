@@ -1,4 +1,4 @@
-### Nombre del Juego
+### Touring the maze 
 
 ![capturaJuego](assets/capturaJuego.png)
 
@@ -6,10 +6,10 @@
 
 Integrantes:
 
-- Juana Azurduy
-- Alicia Moreau
-- Joe Balachi
-- Benedict Arnold
+- Fuentes Matias
+- Witkowski Alejandro
+- Sciacca Lucia
+
 
 #### Descripción e instrucciones
 
