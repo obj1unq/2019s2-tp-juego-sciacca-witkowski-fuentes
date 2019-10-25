@@ -1,6 +1,7 @@
 import wollok.game.*
 import personajes.*
 import objetosVisuales.*
+import plataformas_nivel1.*
 
 
 object seleccion{
@@ -31,8 +32,8 @@ object nivel1 {
 	method iniciar(personaje) {
 		game.clear()
 		game.addVisualIn(iNivel1, game.at(0,0))
-		game.addVisualCharacter(personaje)
-	
+		game.addVisualCharacterIn(personaje, game.at(0,2))
+		plataformas_nivel1.cargarPlataformas()
 	}
 }
 
