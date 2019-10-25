@@ -7,7 +7,7 @@ program touringtheMaze {
 	//  CONFIG	
 	game.title("Touring the Maze")
 	game.height(15)
-	game.width(17)
+	game.width(18)
 	seleccion.iniciar()
 	
 

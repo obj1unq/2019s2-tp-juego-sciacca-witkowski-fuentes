@@ -1,32 +1,64 @@
 import wollok.game.*
 
 object iNivel1 {
-	var property position = new Position(x = 0, y = 0)
 	const property image = "pantalla_calabozo.png"
 	
 }
 
 object guerrero_grande {
-	var property position = new Position(x = 3, y = 3)
 	const property image = "guerrero_grande.png"
 	
 }
 
 object mago_grande {
-	var property position = new Position(x = 4, y = 3)
 	const property image = "mago_grande.png"
 	
 }
 
 object orco_grande {
-	var property position = new Position(x = 5, y = 3)
 	const property image = "orco_grande.png"
 	
 }
 
 object vikingo_grande {
-	var property position = new Position(x = 6, y = 3)
 	const property image = "vikingo_grande.png"
 	
 }
+
+object titulo_principal {
+	var property position = new Position(x = 2, y = 13)
+	const property image = "titulo_principal.png"
+	
+}
+
+object seleccion_personaje {
+	var property position = new Position(x = 4, y = 0)
+	const property image = "seleccione_personaje.png"
+	
+}
+
+object mago_seleccion {
+	var property position = new Position(x = 0, y = 2)
+	const property image = "1mago.png"
+	
+}
+
+object guerrero_seleccion {
+	var property position = new Position(x = 4, y = 2)
+	const property image = "2guerrero.png"
+	
+}
+
+object orco_seleccion {
+	var property position = new Position(x = 9, y = 2)
+	const property image = "3orco.png"
+	
+}
+
+object vikingo_seleccion {
+	var property position = new Position(x = 13, y = 2)
+	const property image = "4vikingo.png"
+	
+}
+
 

@@ -7,10 +7,16 @@ object seleccion{
 
 	method iniciar() {
 		game.boardGround("pantalla_seleccion.png")
+		game.addVisual(titulo_principal)
+		game.addVisual(seleccion_personaje)
+		game.addVisual(mago_seleccion)
+		game.addVisual(guerrero_seleccion)
+		game.addVisual(orco_seleccion)
+		game.addVisual(vikingo_seleccion)
 		game.addVisualIn(mago_grande, game.at(0, 3))
 		game.addVisualIn(guerrero_grande, game.at(4, 3))
-		game.addVisualIn(orco_grande, game.at(8, 3))
-		game.addVisualIn(vikingo_grande, game.at(12, 3))
+		game.addVisualIn(orco_grande, game.at(9, 3))
+		game.addVisualIn(vikingo_grande, game.at(13, 3))
 		keyboard.num1().onPressDo { nivel1.iniciar(mago)}
 		keyboard.num2().onPressDo { nivel1.iniciar(guerrero)}
 		keyboard.num3().onPressDo { nivel1.iniciar(orco)}

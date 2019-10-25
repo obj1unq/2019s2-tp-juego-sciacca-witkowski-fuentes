@@ -16,6 +16,7 @@ object mago {
 	var property position = new Position(x = 4, y = 3)
 	const property image = "mago.png"
 	
+	// Atributos del personaje
 	const vida = 50
 	const fuerza = 20
 	const inteligencia = 100
@@ -27,6 +28,7 @@ object orco {
 	var property position = new Position(x = 5, y = 3)
 	const property image = "orco.png"
 	
+	// Atributos del personaje
 	const vida = 100
 	const fuerza = 70
 	const inteligencia = 20
@@ -38,6 +40,7 @@ object vikingo {
 	var property position = new Position(x = 6, y = 3)
 	const property image = "vikingo.png"
 	
+	// Atributos del personaje
 	const vida = 70
 	const fuerza = 100
 	const inteligencia = 40
