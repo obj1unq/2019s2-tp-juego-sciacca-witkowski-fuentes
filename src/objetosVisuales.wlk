@@ -26,7 +26,7 @@ object vikingo_grande {
 }
 
 object titulo_principal {
-	var property position = new Position(x = 2, y = 13)
+	var property position = new Position(x = 0, y = 10)
 	const property image = "titulo_principal.png"
 	
 }

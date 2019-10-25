@@ -6,7 +6,7 @@ import objetosVisuales.*
 object seleccion{
 
 	method iniciar() {
-		game.boardGround("pantalla_seleccion.png")
+		game.boardGround("seleccion_2.jpg")
 		game.addVisual(titulo_principal)
 		game.addVisual(seleccion_personaje)
 		game.addVisual(mago_seleccion)
