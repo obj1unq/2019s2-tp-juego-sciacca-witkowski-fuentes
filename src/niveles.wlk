@@ -1,20 +1,20 @@
 import wollok.game.*
 import personajes.*
+import objetosVisuales.*
 
 
 object seleccion{
 
 	method iniciar() {
-		game.boardGround("seleccion.png")
-		game.addVisualIn(mago, game.at(3, 3))
-		game.addVisualIn(guerrero, game.at(5, 3))
-		game.addVisualIn(orco, game.at(7, 3))
-		game.addVisualIn(vikingo, game.at(9, 3))
+		game.boardGround("pantalla_seleccion.png")
+		game.addVisualIn(mago_grande, game.at(0, 3))
+		game.addVisualIn(guerrero_grande, game.at(4, 3))
+		game.addVisualIn(orco_grande, game.at(8, 3))
+		game.addVisualIn(vikingo_grande, game.at(12, 3))
 		keyboard.num1().onPressDo { nivel1.iniciar(mago)}
 		keyboard.num2().onPressDo { nivel1.iniciar(guerrero)}
 		keyboard.num3().onPressDo { nivel1.iniciar(orco)}
 		keyboard.num4().onPressDo { nivel1.iniciar(vikingo)}
-		
 	}
 
 }
@@ -24,7 +24,7 @@ object nivel1 {
 
 	method iniciar(personaje) {
 		game.clear()
-		game.addVisual("calabozo.png")
+		game.addVisualIn(iNivel1, game.at(0,0))
 		game.addVisualCharacter(personaje)
 	
 	}
