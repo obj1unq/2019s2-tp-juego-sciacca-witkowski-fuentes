@@ -1,5 +1,7 @@
 import wollok.game.*
 
+// plataformas
+
 class Plataforma{
 	const property position 
 	const property image = "bloque1_50.png"	
@@ -25,5 +27,27 @@ object plataformas_nivel1 {
 	}
 }
 
+//escaleras
 
+class Escalera{
+	const property position 
+	const property image = "stair.png"	
+	
+}
 
+object escaleras_nivel1 {
+
+	const escalera1 = new Range (start=2,end=5)
+	const escalera2 = new Range (start=5,end=8)
+	const escalera3 = new Range (start=8,end=11)
+
+	method cargarEscaleras() { 
+		self.armarEscalera(17,escalera1)
+		self.armarEscalera(0,escalera2)
+		self.armarEscalera(17,escalera3)	
+	}
+
+	method armarEscalera(posicionX,escalera){
+		escalera.forEach({ y => game.addVisual( new Escalera(position = game.at(posicionX,y)) )})
+	}
+}

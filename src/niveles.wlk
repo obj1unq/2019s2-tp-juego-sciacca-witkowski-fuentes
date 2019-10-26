@@ -32,8 +32,13 @@ object nivel1 {
 	method iniciar(personaje) {
 		game.clear()
 		game.addVisualIn(iNivel1, game.at(0,0))
-		game.addVisualCharacterIn(personaje, game.at(0,2))
+		game.addVisual(personaje)
 		plataformas_nivel1.cargarPlataformas()
+		escaleras_nivel1.cargarEscaleras()
+		keyboard.left().onPressDo {personaje.moverIzquierda()}
+		keyboard.right().onPressDo {personaje.moverDerecha()}
+		keyboard.up().onPressDo {personaje.subir()}
+		keyboard.down().onPressDo {personaje.bajar()}		
 	}
 }
 
@@ -72,10 +77,7 @@ object tutorial3 {
 object config {
 
 	method configurarTeclas() {
-		keyboard.left().onPressDo({ pepita.irA(pepita.position().left(1))})
-		keyboard.right().onPressDo({ pepita.irA(pepita.position().right(1))})
-		keyboard.up().onPressDo({ pepita.irA(pepita.position().up(1))})
-		keyboard.down().onPressDo({ pepita.irA(pepita.position().down(1))})
+		
 		//keyboard.c().onPressDo({pepita.come(game.uniqueCollider(pepita))})
 	}
 

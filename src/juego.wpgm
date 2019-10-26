@@ -15,37 +15,3 @@ program touringtheMaze {
  	
 	game.start()
 }
-
-// CODIGO EXTRAIDO DE OTROS JUEGOS A MODO DE EJEMPLO
-/* 
-program PepitaGame {
-	game.title("Pepita")
-	game.height(10)
-	game.width(10)
-	game.boardGround("fondo2.jpg")
-
-	tutorial2.iniciar()
-
-	game.showAttributes(pepita) //Debug
-
-	game.start()
-}*/
-
-	// LEVEL 1
-
-/*
-	keyboard.m().onPressDo {hector.sembrar(new Maiz())}
-	keyboard.t().onPressDo { hector.sembrar(new Trigo())}
-	keyboard.o().onPressDo { hector.sembrar(new Tomaco()) }
-	keyboard.r().onPressDo { hector.regar()} 
-	keyboard.c().onPressDo { hector.cosechar()} 
-	keyboard.v().onPressDo { hector.venderCultivos()} 
-	keyboard.space().onPressDo { hector.informarOroYCosecha()} 
-	*/
-	//  VISUALES
- /* 	game.addVisualCharacter(hector)
- 	game.addVisualIn(new Maiz(), game.at(1, 1))
- 	game.addVisual(mercado1)
- 	game.addVisual(mercado2)
- 	game.addVisual(mercado3)
-*/ 	

@@ -1,7 +1,8 @@
 import wollok.game.*
+import plataformas_nivel1.*
 
 object guerrero {
-	var property position = new Position(x = 3, y = 3)
+	var property position = game.at(0, 2) 
 	const property image = "guerrero.png"
 	
 	// Atributos del personaje
@@ -10,10 +11,28 @@ object guerrero {
 	const inteligencia = 70
 	const velocidadDeAtaque = 50
 	
+	// Posicionamiento
+	method moverIzquierda(){
+		if (position.x()>0){position = position.left(1)}
+	}
+	
+	method moverDerecha(){
+		if (position.x()<17){position = position.right(1)}
+	}
+	
+	method moverArriba(){
+		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	}
+	
+	method moverAbajo(){
+		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
+	}
+	
+	
 }
 
 object mago {
-	var property position = new Position(x = 4, y = 3)
+	var property position = game.at(0, 2) 
 	const property image = "mago.png"
 	
 	// Atributos del personaje
@@ -22,10 +41,27 @@ object mago {
 	const inteligencia = 100
 	const velocidadDeAtaque = 70
 	
+	// Posicionamiento
+	method moverIzquierda(){
+		if (position.x()>0){position = position.left(1)}
+	}
+	
+	method moverDerecha(){
+		if (position.x()<17){position = position.right(1)}
+	}
+	
+	method moverArriba(){
+		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	}
+	
+	method moverAbajo(){
+		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
+	}
+	
 }
 
 object orco {
-	var property position = new Position(x = 5, y = 3)
+	var property position = game.at(0, 2) 
 	const property image = "orco.png"
 	
 	// Atributos del personaje
@@ -34,10 +70,27 @@ object orco {
 	const inteligencia = 20
 	const velocidadDeAtaque = 50
 	
+	// Posicionamiento
+	method moverIzquierda(){
+		if (position.x()>0){position = position.left(1)}
+	}
+	
+	method moverDerecha(){
+		if (position.x()<17){position = position.right(1)}
+	}
+	
+	method moverArriba(){
+		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	}
+	
+	method moverAbajo(){
+		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
+	}
+	
 }
 
 object vikingo {
-	var property position = new Position(x = 6, y = 3)
+	var property position = game.at(0, 2) 
 	const property image = "vikingo.png"
 	
 	// Atributos del personaje
@@ -46,6 +99,24 @@ object vikingo {
 	const inteligencia = 40
 	const velocidadDeAtaque = 30
 	
+	// Posicionamiento
+	method moverIzquierda(){
+		if (position.x()>0){position = position.left(1)}
+	}
+	
+	method moverDerecha(){
+		if (position.x()<17){position = position.right(1)}
+	}
+	
+	method moverArriba(){
+		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	}
+	
+	method moverAbajo(){
+		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
+	}
+	
 }
+
 
 
