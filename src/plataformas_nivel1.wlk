@@ -5,6 +5,8 @@ import wollok.game.*
 class Plataforma{
 	const property position 
 	const property image = "bloque1_50.png"	
+	
+	method puedoTreparlo() = false
 }
 
 object plataformas_nivel1 {
@@ -33,13 +35,15 @@ class Escalera{
 	const property position 
 	const property image = "stair.png"	
 	
+	method puedoTreparlo() = true
+	
 }
 
 object escaleras_nivel1 {
 
-	const escalera1 = new Range (start=2,end=5)
-	const escalera2 = new Range (start=5,end=8)
-	const escalera3 = new Range (start=8,end=11)
+	const escalera1 = new Range (start=2,end=4)
+	const escalera2 = new Range (start=5,end=7)
+	const escalera3 = new Range (start=8,end=10)
 
 	method cargarEscaleras() { 
 		self.armarEscalera(17,escalera1)

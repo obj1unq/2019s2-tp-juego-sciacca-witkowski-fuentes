@@ -3,8 +3,8 @@ import plataformas_nivel1.*
 
 object guerrero {
 	var property position = game.at(0, 2) 
-	const property image = "guerrero.png"
-	
+	var property image = "guerrero.png"
+
 	// Atributos del personaje
 	const vida = 70
 	const fuerza = 50
@@ -14,19 +14,19 @@ object guerrero {
 	// Posicionamiento
 	method moverIzquierda(){
 		if (position.x()>0){position = position.left(1)}
+		if (game.colliders(self)!=#{} and game.uniqueCollider(self).Treparlo())
+				 {image = "guerreroEnEscalera.png"}
+			else {image = "guerrero"}
 	}
 	
 	method moverDerecha(){
 		if (position.x()<17){position = position.right(1)}
 	}
 	
-	method moverArriba(){
-		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	method subir(){
+		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
 	}
 	
-	method moverAbajo(){
-		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
-	}
 	
 	
 }
@@ -50,12 +50,8 @@ object mago {
 		if (position.x()<17){position = position.right(1)}
 	}
 	
-	method moverArriba(){
-		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
-	}
-	
-	method moverAbajo(){
-		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
+	method subir(){
+		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
 	}
 	
 }
@@ -79,14 +75,10 @@ object orco {
 		if (position.x()<17){position = position.right(1)}
 	}
 	
-	method moverArriba(){
-		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	method subir(){
+		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
 	}
-	
-	method moverAbajo(){
-		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
-	}
-	
+
 }
 
 object vikingo {
@@ -108,15 +100,13 @@ object vikingo {
 		if (position.x()<17){position = position.right(1)}
 	}
 	
-	method moverArriba(){
-		if (game.uniqueCollider(self)==new Escalera()){position = self.position().up(1)}
+	method subir(){
+		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
 	}
 	
-	method moverAbajo(){
-		if (game.uniqueCollider(self)!=new Escalera()){position = self.position().down(1)}
-	}
 	
 }
+
 
 
 
