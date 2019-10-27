@@ -1,35 +1,7 @@
 import wollok.game.*
 import plataformas_nivel1.*
+import obstaculos.*
 
-object guerrero {
-	var property position = game.at(0, 2) 
-	var property image = "guerrero.png"
-
-	// Atributos del personaje
-	const vida = 70
-	const fuerza = 50
-	const inteligencia = 70
-	const velocidadDeAtaque = 50
-	
-	// Posicionamiento
-	method moverIzquierda(){
-		if (position.x()>0){position = position.left(1)}
-		if (game.colliders(self)!=#{} and game.uniqueCollider(self).Treparlo())
-				 {image = "guerreroEnEscalera.png"}
-			else {image = "guerrero"}
-	}
-	
-	method moverDerecha(){
-		if (position.x()<17){position = position.right(1)}
-	}
-	
-	method subir(){
-		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
-	}
-	
-	
-	
-}
 
 object mago {
 	var property position = game.at(0, 2) 
@@ -41,19 +13,66 @@ object mago {
 	const inteligencia = 100
 	const velocidadDeAtaque = 70
 	
+	method atacar(){
+		if(game.getObjectsIn(position.right(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+		if(game.getObjectsIn(position.left(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+	}
+	
 	// Posicionamiento
 	method moverIzquierda(){
-		if (position.x()>0){position = position.left(1)}
+		if (game.colliders(self)== [] and position.x()>0){position = position.left(1)}
 	}
 	
 	method moverDerecha(){
-		if (position.x()<17){position = position.right(1)}
+		if (game.colliders(self)== [] and position.x()<17){position = position.right(1)}
 	}
 	
 	method subir(){
-		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
+		if (game.colliders(self)!= [] and game.uniqueCollider(self).puedoTreparlo())
+						{position = self.position().up(1)}
+				else {game.say(self, "                              No puedo subir!")}
+	}
+		
+}
+
+object guerrero {
+	var property position = game.at(0, 2) 
+	var property image = "guerrero.png"
+
+	// Atributos del personaje
+	const vida = 70
+	const fuerza = 50
+	const inteligencia = 70
+	const velocidadDeAtaque = 50
+	
+	method atacar(){
+		if(game.getObjectsIn(position.right(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+		if(game.getObjectsIn(position.left(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
 	}
 	
+	// Posicionamiento
+	method moverIzquierda(){
+		if (game.colliders(self)== [] and position.x()>0){position = position.left(1)}
+	}
+	
+	method moverDerecha(){
+		if (game.colliders(self)== [] and position.x()<17){position = position.right(1)}
+	}
+	
+	method subir(){
+		if (game.colliders(self)!= [] and game.uniqueCollider(self).puedoTreparlo())
+						{position = self.position().up(1)}
+				else {game.say(self, "                              No puedo subir!")}
+	}
+		
 }
 
 object orco {
@@ -66,18 +85,30 @@ object orco {
 	const inteligencia = 20
 	const velocidadDeAtaque = 50
 	
+	method atacar(){
+		if(game.getObjectsIn(position.right(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+		if(game.getObjectsIn(position.left(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+	}
+	
 	// Posicionamiento
 	method moverIzquierda(){
-		if (position.x()>0){position = position.left(1)}
+		if (game.colliders(self)== [] and position.x()>0){position = position.left(1)}
 	}
 	
 	method moverDerecha(){
-		if (position.x()<17){position = position.right(1)}
+		if (game.colliders(self)== [] and position.x()<17){position = position.right(1)}
 	}
 	
 	method subir(){
-		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
+		if (game.colliders(self)!= [] and game.uniqueCollider(self).puedoTreparlo())
+						{position = self.position().up(1)}
+				else {game.say(self, "                              No puedo subir!")}
 	}
+		
 
 }
 
@@ -91,19 +122,29 @@ object vikingo {
 	const inteligencia = 40
 	const velocidadDeAtaque = 30
 	
+		method atacar(){
+		if(game.getObjectsIn(position.right(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+		if(game.getObjectsIn(position.left(1))!=[]){
+			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+		}
+	}
+	
 	// Posicionamiento
 	method moverIzquierda(){
-		if (position.x()>0){position = position.left(1)}
+		if (game.colliders(self)== [] and position.x()>0){position = position.left(1)}
 	}
 	
 	method moverDerecha(){
-		if (position.x()<17){position = position.right(1)}
+		if (game.colliders(self)== [] and position.x()<17){position = position.right(1)}
 	}
 	
 	method subir(){
-		if (game.uniqueCollider(self).puedoTreparlo()){position = self.position().up(1)}
+		if (game.colliders(self)!= [] and game.uniqueCollider(self).puedoTreparlo())
+						{position = self.position().up(1)}
+				else {game.say(self, "                              No puedo subir!")}
 	}
-	
 	
 }
 

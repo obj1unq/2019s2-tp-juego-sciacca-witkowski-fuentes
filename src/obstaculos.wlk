@@ -1,11 +1,12 @@
 import wollok.game.*
+import personajes.*
 
 class Skeleton {
 	var property image = "skeleton_warrior.png"
 	var property position 
 	var life = 100
 	
-	method sufrirDanio(danio) {
+	method serAtacado(danio) {
 		life-=danio
 		if(life<=0) {game.removeVisual(self)}
 	}
