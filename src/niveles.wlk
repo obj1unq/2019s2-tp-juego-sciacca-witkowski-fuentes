@@ -37,11 +37,13 @@ object nivel1 {
 		plataformas_nivel1.cargarPlataformas()
 		escaleras_nivel1.cargarEscaleras()
 		esqueletosNivel1.cargarEsqueletos()
+		teleport.ponerTeleport()
 		keyboard.left().onPressDo {personaje.moverIzquierda()}
 		keyboard.right().onPressDo {personaje.moverDerecha()}
 		keyboard.up().onPressDo {personaje.subir()}
 		keyboard.down().onPressDo {personaje.bajar()}		
 		keyboard.a().onPressDo {personaje.atacar()}	
+		game.onTick(1000, "Terminar juego", {=> teleport.estaPersonaje()})
 	}
 }
 

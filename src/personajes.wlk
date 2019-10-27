@@ -18,7 +18,7 @@ object mago {
 			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
 		}
 		if(game.getObjectsIn(position.left(1))!=[]){
-			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
 	
@@ -54,7 +54,7 @@ object guerrero {
 			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
 		}
 		if(game.getObjectsIn(position.left(1))!=[]){
-			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
 	
@@ -90,7 +90,7 @@ object orco {
 			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
 		}
 		if(game.getObjectsIn(position.left(1))!=[]){
-			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
 	
@@ -127,7 +127,7 @@ object vikingo {
 			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
 		}
 		if(game.getObjectsIn(position.left(1))!=[]){
-			game.getObjectsIn(position.right(1)).first().serAtacado(fuerza)
+			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
 	

@@ -55,3 +55,19 @@ object escaleras_nivel1 {
 		escalera.forEach({ y => game.addVisual( new Escalera(position = game.at(posicionX,y)) )})
 	}
 }
+
+//Fin de Nivel
+
+object teleport {
+	var property position = new Position(x = 0, y = 11)
+	const property image = "teleport.png"
+	
+	method ponerTeleport(){game.addVisual(self)}
+	
+	method estaPersonaje(){
+		if (game.colliders(self)!=[]){
+			game.say(self,"Has Superado el nivel")
+			//game.schedule(2000, game.stop())
+		}
+	}
+}
