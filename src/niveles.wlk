@@ -2,6 +2,7 @@ import wollok.game.*
 import personajes.*
 import objetosVisuales.*
 import plataformas_nivel1.*
+import obstaculos.*
 
 
 object seleccion{
@@ -35,6 +36,7 @@ object nivel1 {
 		game.addVisual(personaje)
 		plataformas_nivel1.cargarPlataformas()
 		escaleras_nivel1.cargarEscaleras()
+		esqueletosNivel1.cargarEsqueletos()
 		keyboard.left().onPressDo {personaje.moverIzquierda()}
 		keyboard.right().onPressDo {personaje.moverDerecha()}
 		keyboard.up().onPressDo {personaje.subir()}
