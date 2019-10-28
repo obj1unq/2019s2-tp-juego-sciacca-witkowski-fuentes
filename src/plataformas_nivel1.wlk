@@ -63,9 +63,9 @@ object teleport {
 	var property position = new Position(x = 0, y = 11)
 	var property image = "teleport.png"
 	
-	method image() = if (game.colliders(self)==[]) 
-								{image = "teleport.png" }
-						   	else {image = game.uniqueCollider(self).imagenDelFinal()}
+	//method image() = if (game.colliders(self)==[]) 
+		//						{image = "teleport.png" }
+			//			   	else {image = game.uniqueCollider(self).imagenDelFinal()}
 	
 	method ponerTeleport(){game.addVisual(self)}
 	
