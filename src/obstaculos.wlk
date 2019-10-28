@@ -23,4 +23,6 @@ object esqueletosNivel1{
 	method cargarEsqueletos(){
 		listaDeEsqueletos.forEach{esqueleto => game.addVisual(esqueleto)}
 	}
+	
+	method puedoTreparlo() = false
 }

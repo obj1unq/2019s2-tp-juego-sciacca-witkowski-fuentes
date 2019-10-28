@@ -1,4 +1,5 @@
 import wollok.game.*
+import personajes.*
 
 // plataformas
 
@@ -33,7 +34,7 @@ object plataformas_nivel1 {
 
 class Escalera{
 	const property position 
-	const property image = "stair.png"	
+	var property image = "stair.png"	
 	
 	method puedoTreparlo() = true
 	
@@ -60,14 +61,18 @@ object escaleras_nivel1 {
 
 object teleport {
 	var property position = new Position(x = 0, y = 11)
-	const property image = "teleport.png"
+	var property image = "teleport.png"
+	
+	method image() = if (game.colliders(self)==[]) 
+								{image = "teleport.png" }
+						   	else {image = game.uniqueCollider(self).imagenDelFinal()}
 	
 	method ponerTeleport(){game.addVisual(self)}
 	
 	method estaPersonaje(){
 		if (game.colliders(self)!=[]){
 			game.say(self,"Has Superado el nivel")
-			//game.schedule(2000, game.stop())
+			game.schedule(2000, {game.stop()})
 		}
 	}
 }

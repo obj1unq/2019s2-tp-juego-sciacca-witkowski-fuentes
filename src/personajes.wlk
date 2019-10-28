@@ -5,7 +5,7 @@ import obstaculos.*
 
 object mago {
 	var property position = game.at(0, 2) 
-	const property image = "mago.png"
+	var property image = "mago.png"
 	
 	// Atributos del personaje
 	const vida = 50
@@ -21,6 +21,8 @@ object mago {
 			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
+	
+	method imagenDelFinal() = "magoTeleport.png"
 	
 	// Posicionamiento
 	method moverIzquierda(){
@@ -58,6 +60,8 @@ object guerrero {
 		}
 	}
 	
+	method imagenDelFinal() = "guerreroTeleport.png"
+	
 	// Posicionamiento
 	method moverIzquierda(){
 		if (game.colliders(self)== [] and position.x()>0){position = position.left(1)}
@@ -77,7 +81,7 @@ object guerrero {
 
 object orco {
 	var property position = game.at(0, 2) 
-	const property image = "orco.png"
+	var property image = "orco.png"
 	
 	// Atributos del personaje
 	const vida = 100
@@ -93,6 +97,8 @@ object orco {
 			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
+	
+	method imagenDelFinal() = "orcoTeleport.png"
 	
 	// Posicionamiento
 	method moverIzquierda(){
@@ -114,7 +120,7 @@ object orco {
 
 object vikingo {
 	var property position = game.at(0, 2) 
-	const property image = "vikingo.png"
+	var property image = "vikingo.png"
 	
 	// Atributos del personaje
 	const vida = 70
@@ -130,6 +136,8 @@ object vikingo {
 			game.getObjectsIn(position.left(1)).first().serAtacado(fuerza)
 		}
 	}
+	
+	method imagenDelFinal() = "vikingoTeleport.png"
 	
 	// Posicionamiento
 	method moverIzquierda(){
