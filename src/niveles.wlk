@@ -43,7 +43,6 @@ object nivel1 {
 		keyboard.up().onPressDo {personaje.subir()}
 		keyboard.down().onPressDo {personaje.bajar()}		
 		keyboard.a().onPressDo {personaje.atacar()}	
-		game.onTick(1000, "Terminar juego", {=> teleport.estaPersonaje()})
 	}
 }
 

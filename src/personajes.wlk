@@ -39,12 +39,14 @@ class Personaje{
 	// Posicionamiento
 	method moverIzquierda(){
 		if ( position.x()>0){position = position.left(1)}
-		game.onCollideDo(self, { personaje => self.intentarPasar(position.right(1))  }) // => 
+		game.whenCollideDo(self, { personaje => self.intentarPasar(position.right(1))  })
+		teleport.estaPersonaje() 
 	}
 	
 	method moverDerecha(){
-		if (game.colliders(self)== [] and position.x()<17){position = position.right(1)}
-		game.onCollideDo(self, { personaje => self.intentarPasar(position.left(1)) }) 
+		if ( position.x()<17){position = position.right(1)}
+		game.whenCollideDo(self, { personaje => self.intentarPasar(position.left(1)) })
+		teleport.estaPersonaje() 
 	}
 	
 	method intentarPasar(posicionAnterior){

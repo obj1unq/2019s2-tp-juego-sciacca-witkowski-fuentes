@@ -62,17 +62,14 @@ object escaleras_nivel1 {
 object teleport {
 	var property position = new Position(x = 0, y = 11)
 	var property image = "teleport.png"
-	
-	//method image() = if (game.colliders(self)==[]) 
-		//						{image = "teleport.png" }
-			//			   	else {image = game.uniqueCollider(self).imagenDelFinal()}
-	
+
 	method ponerTeleport(){game.addVisual(self)}
 	
 	method estaPersonaje(){
 		if (game.colliders(self)!=[]){
+			image = game.uniqueCollider(self).imagenDelFinal()
 			game.say(self,"Has Superado el nivel")
-			game.schedule(2000, {game.stop()})
+			game.schedule(4000, {game.stop()})
 		}
 	}
 	
