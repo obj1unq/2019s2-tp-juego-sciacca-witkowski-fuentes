@@ -22,6 +22,23 @@ class Skeleton {
 	} 
 }
 
+class Ghost {
+	var property image = "ghost.png"
+	var property position 
+	
+	method puedoTreparlo() = false
+	method puedoAtravesarlo() = false	
+	
+	method chocarContra(personaje) {
+		personaje.morir()
+
+	}
+	
+	method actualizarPosicion(){
+		if(position.y()<15){position = position.up(1)} else {position = game.at(position.x(),0)}
+	} 
+}
+
 object esqueletosNivel1{
 	const esqueleto1 = new Skeleton (position = game.at(5, 2))
 	const esqueleto2 = new Skeleton (position = game.at(3, 5))
@@ -31,6 +48,22 @@ object esqueletosNivel1{
 	
 	method cargarEsqueletos(){
 		listaDeEsqueletos.forEach{esqueleto => game.addVisual(esqueleto)}
+	}
+
+}
+
+object fantasmasNivel1{
+	const fantasma1 = new Ghost (position = game.at(2, 2))
+	const fantasma2 = new Ghost (position = game.at(10, 5))
+	const fantasma3 = new Ghost (position = game.at(12, 8))
+	const listaDeFantasmas  = [fantasma1,fantasma2,fantasma3] 
+	
+	method cargarFantasmas(){
+		listaDeFantasmas.forEach{esqueleto => game.addVisual(esqueleto)}
+	}
+	
+	method actualizarPosiciones(){
+		listaDeFantasmas.forEach{ fantasma => fantasma.actualizarPosicion()}
 	}
 
 }

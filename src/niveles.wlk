@@ -21,6 +21,7 @@ object seleccion{
 		game.addVisualIn(vikingo_grande, game.at(13, 3))
 		
 		//Configuración de teclas
+		
 		keyboard.num1().onPressDo { nivel1.iniciar(mago)}
 		keyboard.num2().onPressDo { nivel1.iniciar(guerrero)}
 		keyboard.num3().onPressDo { nivel1.iniciar(orco)}
@@ -42,6 +43,7 @@ object nivel1 {
 		plataformas_nivel1.cargarPlataformas()
 		escaleras_nivel1.cargarEscaleras()
 		esqueletosNivel1.cargarEsqueletos()
+		fantasmasNivel1.cargarFantasmas()
 		teleport.ponerTeleport()
 		
 		//Colisiones
@@ -54,6 +56,10 @@ object nivel1 {
 		keyboard.up().onPressDo {personaje.subir()}
 		keyboard.down().onPressDo {personaje.bajar()}		
 		keyboard.a().onPressDo {personaje.atacar()}	
+		
+		// eventos 
+		
+		game.onTick(1000, "movimientos de fantasmas", {fantasmasNivel1.actualizarPosiciones()})
 	}
 }
 
