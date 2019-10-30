@@ -8,6 +8,11 @@ class Plataforma{
 	const property image = "bloque1_50.png"	
 	
 	method puedoTreparlo() = false
+	method puedoAtravesarlo() = false
+	
+	method chocarContra(personaje) {
+		//game.say(self,"				No podes atravesar plataformas!!")	
+	} 
 }
 
 object plataformas_nivel1 {
@@ -17,6 +22,8 @@ object plataformas_nivel1 {
 	const escalon3 = new Range (start=1,end=17)
 	const escalon4 = new Range (start=0,end=16)
 
+	
+	
 	method cargarPlataformas() { 
 		self.armarEscalon(escalon1,1)
 		self.armarEscalon(escalon2,4)
@@ -28,6 +35,8 @@ object plataformas_nivel1 {
 	method armarEscalon(escalon,posicionY){
 		escalon.forEach({ x => game.addVisual( new Plataforma(position = game.at(x,posicionY)) )})
 	}
+	
+
 }
 
 //escaleras
@@ -38,6 +47,7 @@ class Escalera{
 	
 	method puedoTreparlo() = true
 	method puedoAtravesarlo() = true	
+	method chocarContra(personaje) {}
 }
 
 object escaleras_nivel1 {
@@ -65,12 +75,10 @@ object teleport {
 
 	method ponerTeleport(){game.addVisual(self)}
 	
-	method estaPersonaje(){
-		if (game.colliders(self)!=[]){
+	method chocarContra(personaje) {
 			image = game.uniqueCollider(self).imagenDelFinal()
 			game.say(self,"Has Superado el nivel")
 			game.schedule(4000, {game.stop()})
-		}
 	}
 	
 	method puedoAtravesarlo() = true

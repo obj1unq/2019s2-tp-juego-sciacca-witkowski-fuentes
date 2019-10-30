@@ -7,14 +7,19 @@ class Skeleton {
 	var life = 100
 	var danio = 20
 	
+	method puedoTreparlo() = false
+	method puedoAtravesarlo() = false	
+	
 	method serAtacado(cantidad) {
 		life-=cantidad
 		if(life<=0) {game.removeVisual(self)}
 	}
 	
-	method puedoAtravesarlo() = false	
-	
-	method hacerDanio(personaje) = personaje.bajarVida(danio)
+	method chocarContra(personaje) {
+		personaje.bajarVida(danio)
+		personaje.volverAPosicionAnterior()
+		game.say(self,"				El esqueleto te ha lastimado!")	
+	} 
 }
 
 object esqueletosNivel1{
@@ -27,6 +32,5 @@ object esqueletosNivel1{
 	method cargarEsqueletos(){
 		listaDeEsqueletos.forEach{esqueleto => game.addVisual(esqueleto)}
 	}
-	
-	method puedoTreparlo() = false
+
 }

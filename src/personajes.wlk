@@ -5,6 +5,7 @@ import obstaculos.*
 
 class Personaje{
 	var property position = game.at(0, 2) 
+	var posicionAnterior = game.at(0, 2) 
 	
 	method fuerza()
 	
@@ -20,14 +21,15 @@ class Personaje{
 		if (self.vida()<0){self.morir()}
 	}
 	
+	method atacarOpenenteEnPosicion(posicion){
+		if(game.getObjectsIn(posicion)!=[]){
+			game.getObjectsIn(posicion).first().serAtacado(self.fuerza())
+		}	
+	}
+	
 	method atacar(){
-		if(game.getObjectsIn(position.right(1))!=[]){
-			game.getObjectsIn(position.right(1)).first().serAtacado(self.fuerza())
-		}
-		if(game.getObjectsIn(position.left(1))!=[]){
-			game.getObjectsIn(position.left(1)).first().serAtacado(self.fuerza())
-		}
-
+		self.atacarOpenenteEnPosicion(position.left(1))
+		self.atacarOpenenteEnPosicion(position.right(1))
 	}
 	
 	method morir(){
@@ -38,30 +40,30 @@ class Personaje{
 		
 	// Posicionamiento
 	method moverIzquierda(){
-		if ( position.x()>0){position = position.left(1)}
-		game.whenCollideDo(self, { personaje => self.intentarPasar(position.right(1))  })
-		teleport.estaPersonaje() 
+		if ( position.x()>0){
+			posicionAnterior = position
+			position = position.left(1)
+		}
 	}
 	
 	method moverDerecha(){
-		if ( position.x()<17){position = position.right(1)}
-		game.whenCollideDo(self, { personaje => self.intentarPasar(position.left(1)) })
-		teleport.estaPersonaje() 
-	}
-	
-	method intentarPasar(posicionAnterior){
-		if(!game.uniqueCollider(self).puedoAtravesarlo()){
-			game.uniqueCollider(self).hacerDanio(self)
-			position = posicionAnterior
-			game.say(self,"Fuiste atacado por el esqueleto al intentar pasar")
+		if ( position.x()<17){
+			posicionAnterior = position
+			position = position.right(1)
 		}
 	}
 	
 	method subir(){
-		if (game.colliders(self)!= [] and game.uniqueCollider(self).puedoTreparlo())
-						{position = self.position().up(1)}
-				else {game.say(self, "                              No puedo subir!")}
+		if (game.colliders(self)!= [] and game.uniqueCollider(self).puedoTreparlo()){
+					posicionAnterior = position
+					position = self.position().up(1)
+		}
+		else {
+			game.say(self, "                              No puedo subir!")
+		}
 	}
+	
+	method volverAPosicionAnterior(){ position = posicionAnterior}
 }
 
 object mago inherits Personaje{

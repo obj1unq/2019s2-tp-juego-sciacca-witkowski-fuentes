@@ -19,6 +19,8 @@ object seleccion{
 		game.addVisualIn(guerrero_grande, game.at(4, 3))
 		game.addVisualIn(orco_grande, game.at(9, 3))
 		game.addVisualIn(vikingo_grande, game.at(13, 3))
+		
+		//Configuración de teclas
 		keyboard.num1().onPressDo { nivel1.iniciar(mago)}
 		keyboard.num2().onPressDo { nivel1.iniciar(guerrero)}
 		keyboard.num3().onPressDo { nivel1.iniciar(orco)}
@@ -31,6 +33,9 @@ object seleccion{
 object nivel1 {
 
 	method iniciar(personaje) {
+		
+		//Inicialización de nivel
+		
 		game.clear()
 		game.addVisualIn(iNivel1, game.at(0,0))
 		game.addVisual(personaje)
@@ -38,6 +43,12 @@ object nivel1 {
 		escaleras_nivel1.cargarEscaleras()
 		esqueletosNivel1.cargarEsqueletos()
 		teleport.ponerTeleport()
+		
+		//Colisiones
+		
+		game.onCollideDo(personaje, { obstaculo => obstaculo.chocarContra(personaje) })
+		
+		//Configuración Teclas
 		keyboard.left().onPressDo {personaje.moverIzquierda()}
 		keyboard.right().onPressDo {personaje.moverDerecha()}
 		keyboard.up().onPressDo {personaje.subir()}
