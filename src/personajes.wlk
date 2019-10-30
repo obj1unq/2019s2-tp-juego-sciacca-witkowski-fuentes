@@ -6,6 +6,20 @@ import obstaculos.*
 class Personaje{
 	var property position = game.at(0, 2) 
 	
+	method fuerza()
+	
+	method image(imagen)
+	
+		
+	method vida()
+	
+	method vida(vida)
+	
+	method bajarVida(danio) {
+		self.vida(self.vida()-danio)
+		if (self.vida()<0){self.morir()}
+	}
+	
 	method atacar(){
 		if(game.getObjectsIn(position.right(1))!=[]){
 			game.getObjectsIn(position.right(1)).first().serAtacado(self.fuerza())
@@ -16,15 +30,29 @@ class Personaje{
 
 	}
 	
-	method fuerza()
+	method morir(){
+		game.say(self, "Te mataron, perdiste el juego =(")
+		self.image("Lapida.png") 
+		game.schedule( 4000 , {game.stop()})
+	}
 		
 	// Posicionamiento
 	method moverIzquierda(){
-		if (game.colliders(self)== [] and position.x()>0){position = position.left(1)}
+		if ( position.x()>0){position = position.left(1)}
+		game.onCollideDo(self, { personaje => self.intentarPasar(position.right(1))  }) // => 
 	}
 	
 	method moverDerecha(){
 		if (game.colliders(self)== [] and position.x()<17){position = position.right(1)}
+		game.onCollideDo(self, { personaje => self.intentarPasar(position.left(1)) }) 
+	}
+	
+	method intentarPasar(posicionAnterior){
+		if(!game.uniqueCollider(self).puedoAtravesarlo()){
+			game.uniqueCollider(self).hacerDanio(self)
+			position = posicionAnterior
+			game.say(self,"Fuiste atacado por el esqueleto al intentar pasar")
+		}
 	}
 	
 	method subir(){
@@ -39,20 +67,21 @@ object mago inherits Personaje{
 	var property image = "mago.png"
 	
 	// Atributos del personaje
-	const vida = 50
+	var property vida = 50
 	const property fuerza = 20
 	const inteligencia = 100
 	const velocidadDeAtaque = 70
+
 	
 	method imagenDelFinal() = "magoTeleport.png"
 	
 }
 
-object guerrero { 
+object guerrero inherits Personaje{ 
 	var property image = "guerrero.png"
 
 	// Atributos del personaje
-	const vida = 70
+	var property vida = 70
 	const property fuerza = 50
 	const inteligencia = 70
 	const velocidadDeAtaque = 50
@@ -61,11 +90,11 @@ object guerrero {
 		
 }
 
-object orco {
+object orco inherits Personaje{
 	var property image = "orco.png"
 	
 	// Atributos del personaje
-	const vida = 100
+	var property vida = 100
 	const property fuerza = 70
 	const inteligencia = 20
 	const velocidadDeAtaque = 50
@@ -74,11 +103,11 @@ object orco {
 		
 }
 
-object vikingo { 
+object vikingo inherits Personaje{ 
 	var property image = "vikingo.png"
 	
 	// Atributos del personaje
-	const vida = 70
+	var property vida = 70
 	const property fuerza = 100
 	const inteligencia = 40
 	const velocidadDeAtaque = 30

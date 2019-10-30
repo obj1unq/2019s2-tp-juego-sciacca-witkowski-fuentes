@@ -5,12 +5,16 @@ class Skeleton {
 	var property image = "skeleton_warrior.png"
 	var property position 
 	var life = 100
+	var danio = 20
 	
-	method serAtacado(danio) {
-		life-=danio
+	method serAtacado(cantidad) {
+		life-=cantidad
 		if(life<=0) {game.removeVisual(self)}
 	}
 	
+	method puedoAtravesarlo() = false	
+	
+	method hacerDanio(personaje) = personaje.bajarVida(danio)
 }
 
 object esqueletosNivel1{

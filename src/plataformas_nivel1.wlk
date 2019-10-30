@@ -37,7 +37,7 @@ class Escalera{
 	var property image = "stair.png"	
 	
 	method puedoTreparlo() = true
-	
+	method puedoAtravesarlo() = true	
 }
 
 object escaleras_nivel1 {
