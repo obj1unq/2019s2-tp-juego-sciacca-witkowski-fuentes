@@ -75,4 +75,6 @@ object teleport {
 			game.schedule(2000, {game.stop()})
 		}
 	}
+	
+	method puedoAtravesarlo() = true
 }
