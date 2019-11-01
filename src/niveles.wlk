@@ -22,14 +22,23 @@ object seleccion{
 		
 		//Configuración de teclas
 		
-		keyboard.num1().onPressDo { nivel1.iniciar(mago)}
-		keyboard.num2().onPressDo { nivel1.iniciar(guerrero)}
-		keyboard.num3().onPressDo { nivel1.iniciar(orco)}
-		keyboard.num4().onPressDo { nivel1.iniciar(vikingo)}
+		keyboard.num1().onPressDo { comoJugar.iniciar(mago)}
+		keyboard.num2().onPressDo { comoJugar.iniciar(guerrero)}
+		keyboard.num3().onPressDo { comoJugar.iniciar(orco)}
+		keyboard.num4().onPressDo { comoJugar.iniciar(vikingo)}
 	}
 
 }
 
+
+object comoJugar{
+	method iniciar(personaje){
+		game.clear()
+		game.addVisualIn(como_jugar, game.at(0,0))
+		game.addVisualIn(personaje.imagenInicial(),game.at(12, 3))	
+		game.schedule(5000, {nivel1.iniciar(personaje)})
+	}
+}
 
 object nivel1 {
 

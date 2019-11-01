@@ -1,6 +1,7 @@
 import wollok.game.*
 import plataformas_nivel1.*
 import obstaculos.*
+import objetosVisuales.*
 
 
 class Personaje{
@@ -79,6 +80,8 @@ object mago inherits Personaje{
 	
 	method imagenDelFinal() = "magoTeleport.png"
 	
+	method imagenInicial() = mago_grande
+	
 }
 
 object guerrero inherits Personaje{ 
@@ -91,6 +94,8 @@ object guerrero inherits Personaje{
 	const velocidadDeAtaque = 50
 	
 	method imagenDelFinal() = "guerreroTeleport.png"
+	
+	method imagenInicial() = guerrero_grande
 		
 }
 
@@ -104,6 +109,8 @@ object orco inherits Personaje{
 	const velocidadDeAtaque = 50
 
 	method imagenDelFinal() = "orcoTeleport.png"
+	
+	method imagenInicial() = orco_grande
 		
 }
 
@@ -117,6 +124,8 @@ object vikingo inherits Personaje{
 	const velocidadDeAtaque = 30
 	
 	method imagenDelFinal() = "vikingoTeleport.png"
+	
+	method imagenInicial() = vikingo_grande
 	
 }
 

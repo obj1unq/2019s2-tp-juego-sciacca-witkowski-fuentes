@@ -5,6 +5,11 @@ object iNivel1 {
 	
 }
 
+object como_jugar {
+	const property image = "como_jugar.png"
+	
+}
+
 object guerrero_grande {
 	const property image = "guerrero_grande.png"
 	
