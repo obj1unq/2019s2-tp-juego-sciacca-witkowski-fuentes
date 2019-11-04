@@ -35,7 +35,7 @@ object comoJugar{
 	method iniciar(personaje){
 		game.clear()
 		game.addVisualIn(como_jugar, game.at(0,0))
-		game.addVisualIn(personaje.imagenInicial(),game.at(12, 3))	
+		game.addVisualIn(personaje.imagenInicial(),game.at(13, 3))	
 		game.schedule(5000, {nivel1.iniciar(personaje)})
 	}
 }
@@ -65,6 +65,7 @@ object nivel1 {
 		keyboard.up().onPressDo {personaje.subir()}
 		keyboard.down().onPressDo {personaje.bajar()}		
 		keyboard.a().onPressDo {personaje.atacar()}	
+		keyboard.h().onPressDo {personaje.lanzarHabilidad()}	
 		
 		// eventos 
 		

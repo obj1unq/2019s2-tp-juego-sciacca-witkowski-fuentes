@@ -73,14 +73,18 @@ object mago inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 50
+	const mana = 70
 	const property fuerza = 20
 	const inteligencia = 100
-	const velocidadDeAtaque = 70
 
 	
 	method imagenDelFinal() = "magoTeleport.png"
 	
 	method imagenInicial() = mago_grande
+	
+	method lanzarHabilidad(){
+		
+	}
 	
 }
 
@@ -89,13 +93,24 @@ object guerrero inherits Personaje{
 
 	// Atributos del personaje
 	var property vida = 70
+	var mana = 70
 	const property fuerza = 50
 	const inteligencia = 70
-	const velocidadDeAtaque = 50
 	
 	method imagenDelFinal() = "guerreroTeleport.png"
 	
 	method imagenInicial() = guerrero_grande
+	
+	
+	// El Guerrero tiene como habilidad especial la curación
+	method lanzarHabilidad(){
+		if(mana>=70){
+			vida+=50
+			mana-=70	
+		}
+		else {game.say(self,"No tengo mana para la habilidad")}
+				
+	}
 		
 }
 
@@ -104,14 +119,23 @@ object orco inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 100
+	var mana = 70
 	const property fuerza = 70
 	const inteligencia = 20
-	const velocidadDeAtaque = 50
 
 	method imagenDelFinal() = "orcoTeleport.png"
 	
 	method imagenInicial() = orco_grande
-		
+	
+	// El orco tiene la habilidad de saltar a la plataforma de arriba
+	method lanzarHabilidad(){
+		if(mana>=70){
+			position= position.up(3)
+			mana-=70	
+		}
+		else {game.say(self,"No tengo mana para la habilidad")}
+				
+	}
 }
 
 object vikingo inherits Personaje{ 
@@ -119,14 +143,18 @@ object vikingo inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 70
+	const mana = 70
 	const property fuerza = 100
 	const inteligencia = 40
-	const velocidadDeAtaque = 30
 	
 	method imagenDelFinal() = "vikingoTeleport.png"
 	
 	method imagenInicial() = vikingo_grande
 	
+	// El Vikingo tiene la habilidad de saltar a la plataforma de arriba
+	method lanzarHabilidad(){
+		}
+		
 }
 
 
