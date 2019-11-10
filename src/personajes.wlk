@@ -35,7 +35,7 @@ class Personaje{
 	
 	method morir(){
 		game.say(self, "Te mataron, perdiste el juego =(")
-		self.image("Lapida.png") 
+		self.image("Lapida.png")
 		game.schedule( 4000 , {game.stop()})
 	}
 		
@@ -65,7 +65,12 @@ class Personaje{
 	}
 	
 	method volverAPosicionAnterior(){ position = posicionAnterior}
+	
+	method bajar(){ game.say(self, "                          No puedo bajar!")}	
+	
 }
+
+
 
 object mago inherits Personaje{
 	
@@ -73,7 +78,7 @@ object mago inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 50
-	const mana = 70
+	var mana = 70
 	const property fuerza = 20
 	const inteligencia = 100
 
@@ -86,6 +91,10 @@ object mago inherits Personaje{
 		
 	}
 	
+	method ganarMana() {
+		mana= mana+200
+	}
+	
 }
 
 object guerrero inherits Personaje{ 
@@ -93,7 +102,7 @@ object guerrero inherits Personaje{
 
 	// Atributos del personaje
 	var property vida = 70
-	var mana = 70
+	var property mana = 70
 	const property fuerza = 50
 	const inteligencia = 70
 	
@@ -111,6 +120,13 @@ object guerrero inherits Personaje{
 		else {game.say(self,"No tengo mana para la habilidad")}
 				
 	}
+	
+	method ganarMana() {
+		mana= mana+80
+ 
+	}
+	
+	
 		
 }
 
@@ -136,6 +152,10 @@ object orco inherits Personaje{
 		else {game.say(self,"No tengo mana para la habilidad")}
 				
 	}
+	
+	method ganarMana() {
+		mana= mana+100
+	}	
 }
 
 object vikingo inherits Personaje{ 
@@ -143,7 +163,7 @@ object vikingo inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 70
-	const mana = 70
+	var mana = 70
 	const property fuerza = 100
 	const inteligencia = 40
 	
@@ -154,6 +174,10 @@ object vikingo inherits Personaje{
 	// El Vikingo tiene la habilidad de saltar a la plataforma de arriba
 	method lanzarHabilidad(){
 		}
+		
+	method ganarMana() {
+		mana= mana+ 150
+	}
 		
 }
 

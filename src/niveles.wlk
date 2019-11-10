@@ -36,7 +36,7 @@ object comoJugar{
 		game.clear()
 		game.addVisualIn(como_jugar, game.at(0,0))
 		game.addVisualIn(personaje.imagenInicial(),game.at(13, 3))	
-		game.schedule(5000, {nivel1.iniciar(personaje)})
+		game.schedule(3000, {nivel1.iniciar(personaje)})///
 	}
 }
 
@@ -51,8 +51,10 @@ object nivel1 {
 		game.addVisual(personaje)
 		plataformas_nivel1.cargarPlataformas()
 		escaleras_nivel1.cargarEscaleras()
+		game.showAttributes(personaje)
 		esqueletosNivel1.cargarEsqueletos()
 		fantasmasNivel1.cargarFantasmas()
+		pocionesNivel1.cargarPociones()///
 		teleport.ponerTeleport()
 		
 		//Colisiones
@@ -70,6 +72,7 @@ object nivel1 {
 		// eventos 
 		
 		game.onTick(1000, "movimientos de fantasmas", {fantasmasNivel1.actualizarPosiciones()})
+		game.onTick(1500, "movimientos de pociones", {pocionesNivel1.actualizarPosiciones()})///
 	}
 }
 

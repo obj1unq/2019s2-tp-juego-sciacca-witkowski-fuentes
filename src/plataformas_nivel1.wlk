@@ -11,7 +11,8 @@ class Plataforma{
 	method puedoAtravesarlo() = false
 	
 	method chocarContra(personaje) {
-		//game.say(self,"				No podes atravesar plataformas!!")	
+		//game.say(self,"				No podes atravesar plataformas!!")
+		
 	} 
 }
 
@@ -76,8 +77,8 @@ object teleport {
 	method ponerTeleport(){game.addVisual(self)}
 	
 	method chocarContra(personaje) {
-			image = game.uniqueCollider(self).imagenDelFinal()
-			game.say(self,"Has Superado el nivel")
+		    image = game.uniqueCollider(self).imagenDelFinal()
+		   	game.say(self,"Has Superado el nivel")
 			game.schedule(4000, {game.stop()})
 	}
 	
