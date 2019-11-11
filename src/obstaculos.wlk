@@ -29,6 +29,8 @@ class Ghost {
 	method puedoTreparlo() = false
 	method puedoAtravesarlo() = false	
 	
+	method serAtacado(cantidad) {}
+	
 	method chocarContra(personaje) {
 		personaje.morir()
 
@@ -47,18 +49,19 @@ class Pocion {
 	method puedoTreparlo() = false
 	method puedoAtravesarlo() = false
 	
-		
+	method serAtacado(cantidad) {}
+	
 	method chocarContra(personaje) {
 		personaje.ganarMana()
 		
-		game.say(self, "Tengo más mana")		
-
+		game.say(game.uniqueCollider(self), "Tengo más mana")		
+		game.removeVisual(self)
 	}
 	
-	method actualizarPosicion(){
-		if(position.y()>0){position = position.down(1)} else {position = game.at(position.x(),15)}
-	} 
-}//////////////
+//	method actualizarPosicion(){
+	//	if(position.y()>0){position = position.down(1)} else {position = game.at(position.x(),15)}
+// 
+}
 
 object pocionesNivel1{
 	const pocion1 = new Pocion (position = game.at(4, 8))
@@ -69,9 +72,9 @@ object pocionesNivel1{
 		listaDePociones.forEach{pocion => game.addVisual(pocion)}
 	}
 	
-	method actualizarPosiciones(){
-		listaDePociones.forEach{ pocion => pocion.actualizarPosicion()}
-	}
+	//method actualizarPosiciones(){
+		//listaDePociones.forEach{ pocion => pocion.actualizarPosicion()}
+	//}
 
 }
 

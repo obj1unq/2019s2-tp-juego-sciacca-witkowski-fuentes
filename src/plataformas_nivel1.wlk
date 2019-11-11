@@ -49,6 +49,7 @@ class Escalera{
 	method puedoTreparlo() = true
 	method puedoAtravesarlo() = true	
 	method chocarContra(personaje) {}
+	method serAtacado(cantidad) {}
 }
 
 object escaleras_nivel1 {
@@ -75,6 +76,8 @@ object teleport {
 	var property image = "teleport.png"
 
 	method ponerTeleport(){game.addVisual(self)}
+	
+	method serAtacado(cantidad) {}
 	
 	method chocarContra(personaje) {
 		    image = game.uniqueCollider(self).imagenDelFinal()

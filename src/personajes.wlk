@@ -171,16 +171,32 @@ object vikingo inherits Personaje{
 	
 	method imagenInicial() = vikingo_grande
 	
-	// El Vikingo tiene la habilidad de saltar a la plataforma de arriba
+	// El Vikingo tiene la habilidad de lanzar un hacha
+	method proximoPaso() = position.x() - posicionAnterior.x()
+	
 	method lanzarHabilidad(){
-		}
-		
-	method ganarMana() {
-		mana= mana+ 150
+			game.addVisualIn(hacha, game.at(position.x()+self.proximoPaso(),position.y()))
+			game.onCollideDo(hacha, { obstaculo => obstaculo.chocarContra(hacha) })	
+			hacha.serLanzada(self)	
+	}	
+	
+}	
+
+
+object hacha{
+	var property image = "hacha.png"
+	var property position = game.at(0,0)
+
+	method actualizarPosicion(personaje){
+		if (personaje.proximoPaso()>0){
+			position = position.right(1)}
+		else{position = position.left(1)}	
 	}
-		
+
+	method serLanzada(personaje){
+		game.schedule(1000, {self.actualizarPosicion(personaje)})	
+		game.schedule(2000, {self.actualizarPosicion(personaje)})
+		game.schedule(3000, {game.removeVisual(self)})	
+	}
+	
 }
-
-
-
-
