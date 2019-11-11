@@ -6,7 +6,7 @@ import objetosVisuales.*
 
 class Personaje{
 	var property position = game.at(0, 2) 
-	var posicionAnterior = game.at(0, 2) 
+	var posicionAnterior = game.at(0, 17) 
 	
 	method fuerza()
 	
@@ -16,6 +16,10 @@ class Personaje{
 	method vida()
 	
 	method vida(vida)
+	
+	method mana()
+	
+	method mana(mana)
 	
 	method bajarVida(danio) {
 		self.vida(self.vida()-danio)
@@ -37,6 +41,10 @@ class Personaje{
 		game.say(self, "Te mataron, perdiste el juego =(")
 		self.image("Lapida.png")
 		game.schedule( 4000 , {game.stop()})
+	}
+	
+	method ganarMana() {
+		self.mana(self.mana()+50)
 	}
 		
 	// Posicionamiento
@@ -78,7 +86,7 @@ object mago inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 50
-	var mana = 70
+	var property mana = 70
 	const property fuerza = 20
 	const inteligencia = 100
 
@@ -91,9 +99,7 @@ object mago inherits Personaje{
 		
 	}
 	
-	method ganarMana() {
-		mana= mana+200
-	}
+
 	
 }
 
@@ -119,14 +125,7 @@ object guerrero inherits Personaje{
 		}
 		else {game.say(self,"No tengo mana para la habilidad")}
 				
-	}
-	
-	method ganarMana() {
-		mana= mana+80
- 
-	}
-	
-	
+	}	
 		
 }
 
@@ -135,7 +134,7 @@ object orco inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 100
-	var mana = 70
+	var property mana = 70
 	const property fuerza = 70
 	const inteligencia = 20
 
@@ -152,10 +151,6 @@ object orco inherits Personaje{
 		else {game.say(self,"No tengo mana para la habilidad")}
 				
 	}
-	
-	method ganarMana() {
-		mana= mana+100
-	}	
 }
 
 object vikingo inherits Personaje{ 
@@ -163,7 +158,7 @@ object vikingo inherits Personaje{
 	
 	// Atributos del personaje
 	var property vida = 70
-	var mana = 70
+	var property mana = 70
 	const property fuerza = 100
 	const inteligencia = 40
 	
@@ -172,11 +167,12 @@ object vikingo inherits Personaje{
 	method imagenInicial() = vikingo_grande
 	
 	// El Vikingo tiene la habilidad de lanzar un hacha
-	method proximoPaso() = position.x() - posicionAnterior.x()
+	method proximoPaso() = if (self.position().x() == 0 ) 17
+								else position.x() - posicionAnterior.x()
 	
 	method lanzarHabilidad(){
-			game.addVisualIn(hacha, game.at(position.x()+self.proximoPaso(),position.y()))
-			game.onCollideDo(hacha, { obstaculo => obstaculo.chocarContra(hacha) })	
+			game.addVisual(hacha)
+			game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
 			hacha.serLanzada(self)	
 	}	
 	
@@ -188,15 +184,16 @@ object hacha{
 	var property position = game.at(0,0)
 
 	method actualizarPosicion(personaje){
-		if (personaje.proximoPaso()>0){
-			position = position.right(1)}
-		else{position = position.left(1)}	
+		if (personaje.proximoPaso()>0){position = position.right(1)}
+			else if(self.position().x()==0){ position = game.at(17,position.y())}
+					else {position = position.left(1)}				
 	}
 
 	method serLanzada(personaje){
-		game.schedule(1000, {self.actualizarPosicion(personaje)})	
+		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
+		game.schedule(1000, {self.actualizarPosicion(personaje)})
 		game.schedule(2000, {self.actualizarPosicion(personaje)})
-		game.schedule(3000, {game.removeVisual(self)})	
+		game.schedule(3000, {game.removeVisual(self)})
 	}
 	
 }

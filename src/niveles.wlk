@@ -72,7 +72,6 @@ object nivel1 {
 		// eventos 
 		
 		game.onTick(1000, "movimientos de fantasmas", {fantasmasNivel1.actualizarPosiciones()})
-		game.onTick(1500, "movimientos de pociones", {pocionesNivel1.actualizarPosiciones()})///
+	//	game.onTick(1500, "movimientos de pociones", {pocionesNivel1.actualizarPosiciones()})///
 	}
 }
-
