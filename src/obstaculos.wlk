@@ -12,7 +12,10 @@ class Skeleton {
 	
 	method serAtacado(cantidad) {
 		life-=cantidad
-		if(life<=0) {game.removeVisual(self)}
+		game.say(self,"Recibi daño =/")
+		if(life<=0) {
+			game.removeVisual(self)
+		}
 	}
 	
 	method chocarContra(personaje) {
