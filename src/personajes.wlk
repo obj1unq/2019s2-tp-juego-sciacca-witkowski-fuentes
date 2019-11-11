@@ -74,7 +74,7 @@ class Personaje{
 	
 	method volverAPosicionAnterior(){ position = posicionAnterior}
 	
-	method bajar(){ game.say(self, "                          No puedo bajar!")}	
+	//method bajar(){ game.say(self, "                          No puedo bajar!")}	
 	
 }
 
@@ -166,20 +166,22 @@ object vikingo inherits Personaje{
 	
 	method imagenInicial() = vikingo_grande
 	
+	method lanzarHabilidad(){}
+	
 	// El Vikingo tiene la habilidad de lanzar un hacha
-	method proximoPaso() = if (self.position().x() == 0 ) 17
+/*method proximoPaso() = if (self.position().x() == 0 ) 17
 								else position.x() - posicionAnterior.x()
 	
 	method lanzarHabilidad(){
 			game.addVisual(hacha)
 			game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
 			hacha.serLanzada(self)	
-	}	
+	} */		
 	
 }	
 
 
-object hacha{
+/*object hacha{
 	var property image = "hacha.png"
 	var property position = game.at(0,0)
 
@@ -197,3 +199,4 @@ object hacha{
 	}
 	
 }
+*/

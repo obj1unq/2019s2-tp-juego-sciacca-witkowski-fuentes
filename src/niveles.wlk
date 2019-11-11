@@ -65,7 +65,7 @@ object nivel1 {
 		keyboard.left().onPressDo {personaje.moverIzquierda()}
 		keyboard.right().onPressDo {personaje.moverDerecha()}
 		keyboard.up().onPressDo {personaje.subir()}
-		keyboard.down().onPressDo {personaje.bajar()}		
+		//keyboard.down().onPressDo {personaje.bajar()}		
 		keyboard.a().onPressDo {personaje.atacar()}	
 		keyboard.h().onPressDo {personaje.lanzarHabilidad()}	
 		
