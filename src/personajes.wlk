@@ -65,7 +65,7 @@ class Personaje {
 
 	method subir() {
 		if (not (game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo())) 
-			self.error("                              No puedo subir!")
+			self.error("No puedo subir!")
 		posicionAnterior = position
 		position = self.position().up(1)
 	}

@@ -48,12 +48,13 @@ object nivel1 {
 		
 		game.clear()
 		game.addVisualIn(iNivel1, game.at(0,0))
-		game.addVisual(personaje)
+		
 		plataformas_nivel1.cargarPlataformas()
 		escaleras_nivel1.cargarEscaleras()
-		game.showAttributes(personaje)
 		esqueletosNivel1.cargarEsqueletos()
 		fantasmasNivel1.cargarFantasmas()
+		game.addVisual(personaje)
+		game.showAttributes(personaje)
 		pocionesNivel1.cargarPociones()///
 		teleport.ponerTeleport()
 		

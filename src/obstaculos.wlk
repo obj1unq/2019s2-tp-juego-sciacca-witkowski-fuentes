@@ -21,7 +21,7 @@ class Skeleton {
 	method chocarContra(personaje) {
 		personaje.bajarVida(danio)
 		personaje.volverAPosicionAnterior()
-		game.say(self,"				El esqueleto te ha lastimado!")	
+		game.say(self,"El esqueleto te ha lastimado!")	
 	} 
 }
 
