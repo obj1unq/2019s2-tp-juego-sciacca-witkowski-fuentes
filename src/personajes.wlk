@@ -19,6 +19,8 @@ class Personaje {
 	method mana()
 
 	method mana(mana)
+	
+	method serAtacado(cantidad) {}
 
 	method bajarVida(danio) {
 		self.vida(self.vida() - danio)
@@ -113,6 +115,7 @@ object guerrero inherits Personaje {
 		if (mana >= 70) {
 			vida += 50
 			mana -= 70
+			game.say(self, "Recuperaste 50 de salud!")
 		} else {
 			game.say(self, "No tengo mana para la habilidad")
 		}
@@ -158,36 +161,37 @@ object vikingo inherits Personaje {
 
 	method imagenInicial() = vikingo_grande
 
-	method lanzarHabilidad() {
-	}
-
 // El Vikingo tiene la habilidad de lanzar un hacha
-/*method proximoPaso() = if (self.position().x() == 0 ) 17
- * 								else position.x() - posicionAnterior.x()
- * 	
- * 	method lanzarHabilidad(){
- * 			game.addVisual(hacha)
- * 			game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
- * 			hacha.serLanzada(self)	
- } */
+	method proximoPaso() = if (self.position().x() == 0 ) 17
+ 								else position.x() - posicionAnterior.x()
+ 	
+ 	method lanzarHabilidad(){
+			game.addVisual(hacha)
+  			game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
+  			hacha.serLanzada(self)	
+ 	} 
 }
 
-/*object hacha{
- * 	var property image = "hacha.png"
- * 	var property position = game.at(0,0)
+object hacha{
+ 	var property image = "hacha.png"
+ 	var property position = game.at(-1,-1)
+ 	
+ 	method serAtacado(cantidad) {}
+ 	
+ 	method chocarContra(personaje) {}
+ 	
+ 	method actualizarPosicion(personaje){
+ 		if (personaje.proximoPaso()>0){position = position.right(1)}
+ 			else if(self.position().x()==0){ position = game.at(17,position.y())}
+ 					else {position = position.left(1)}				
+ 	}
 
- * 	method actualizarPosicion(personaje){
- * 		if (personaje.proximoPaso()>0){position = position.right(1)}
- * 			else if(self.position().x()==0){ position = game.at(17,position.y())}
- * 					else {position = position.left(1)}				
- * 	}
+ 	method serLanzada(personaje){
+ 		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
+ 		game.schedule(1000, {self.actualizarPosicion(personaje)})
+ 		game.schedule(2000, {self.actualizarPosicion(personaje)})
+ 		game.schedule(3000, {game.removeVisual(self)})
+ 	}
+ 	
+}
 
- * 	method serLanzada(personaje){
- * 		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
- * 		game.schedule(1000, {self.actualizarPosicion(personaje)})
- * 		game.schedule(2000, {self.actualizarPosicion(personaje)})
- * 		game.schedule(3000, {game.removeVisual(self)})
- * 	}
- * 	
- * }
- */
