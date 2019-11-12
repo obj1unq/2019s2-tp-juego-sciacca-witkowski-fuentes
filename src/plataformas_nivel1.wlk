@@ -8,7 +8,6 @@ class Plataforma{
 	const property image = "bloque1_50.png"	
 	
 	method puedoTreparlo() = false
-	method puedoAtravesarlo() = false
 	
 	method chocarContra(personaje) {
 		//game.say(self,"				No podes atravesar plataformas!!")
@@ -47,7 +46,6 @@ class Escalera{
 	var property image = "stair.png"	
 	
 	method puedoTreparlo() = true
-	method puedoAtravesarlo() = true	
 	method chocarContra(personaje) {}
 	method serAtacado(cantidad) {}
 }
@@ -84,6 +82,4 @@ object teleport {
 		   	game.say(self,"Has Superado el nivel")
 			game.schedule(4000, {game.stop()})
 	}
-	
-	method puedoAtravesarlo() = true
 }

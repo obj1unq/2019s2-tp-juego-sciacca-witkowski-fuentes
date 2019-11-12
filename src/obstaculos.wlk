@@ -8,7 +8,6 @@ class Skeleton {
 	var danio = 20
 	
 	method puedoTreparlo() = false
-	method puedoAtravesarlo() = false	
 	
 	method serAtacado(cantidad) {
 		life-=cantidad
@@ -30,13 +29,11 @@ class Ghost {
 	var property position 
 	
 	method puedoTreparlo() = false
-	method puedoAtravesarlo() = false	
 	
 	method serAtacado(cantidad) {}
 	
 	method chocarContra(personaje) {
 		personaje.morir()
-
 	}
 	
 	method actualizarPosicion(){
@@ -50,7 +47,6 @@ class Pocion {
 	var property position 
 	
 	method puedoTreparlo() = false
-	method puedoAtravesarlo() = false
 	
 	method serAtacado(cantidad) {}
 	
@@ -60,10 +56,6 @@ class Pocion {
 		game.say(game.uniqueCollider(self), "Tengo más mana")		
 		game.removeVisual(self)
 	}
-	
-//	method actualizarPosicion(){
-	//	if(position.y()>0){position = position.down(1)} else {position = game.at(position.x(),15)}
-// 
 }
 
 object pocionesNivel1{
@@ -74,14 +66,8 @@ object pocionesNivel1{
 	method cargarPociones(){
 		listaDePociones.forEach{pocion => game.addVisual(pocion)}
 	}
-	
-	//method actualizarPosiciones(){
-		//listaDePociones.forEach{ pocion => pocion.actualizarPosicion()}
-	//}
 
 }
-
-
 
 object esqueletosNivel1{
 	const esqueleto1 = new Skeleton (position = game.at(5, 2))

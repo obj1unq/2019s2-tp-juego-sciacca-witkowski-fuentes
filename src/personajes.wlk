@@ -76,7 +76,6 @@ class Personaje {
 		position = posicionAnterior
 	}
 
-// method bajar(){ game.say(self, "                          No puedo bajar!")}	
 }
 
 object mago inherits Personaje {
@@ -111,6 +110,7 @@ object guerrero inherits Personaje {
 	method imagenInicial() = guerrero_grande
 
 	// El Guerrero tiene como habilidad especial la curación
+	
 	method lanzarHabilidad() {
 		if (mana >= 70) {
 			vida += 50
@@ -137,6 +137,7 @@ object orco inherits Personaje {
 	method imagenInicial() = orco_grande
 
 	// El orco tiene la habilidad de saltar a la plataforma de arriba
+	
 	method lanzarHabilidad() {
 		if (mana >= 70) {
 			position = position.up(3)
@@ -162,6 +163,7 @@ object vikingo inherits Personaje {
 	method imagenInicial() = vikingo_grande
 
 // El Vikingo tiene la habilidad de lanzar un hacha
+
 	method proximoPaso() = if (self.position().x() == 0 ) 17
  								else position.x() - posicionAnterior.x()
  	
@@ -188,9 +190,10 @@ object hacha{
 
  	method serLanzada(personaje){
  		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
+ 		game.schedule(500, {self.actualizarPosicion(personaje)})
  		game.schedule(1000, {self.actualizarPosicion(personaje)})
- 		game.schedule(2000, {self.actualizarPosicion(personaje)})
- 		game.schedule(3000, {game.removeVisual(self)})
+ 		game.schedule(1500, {self.actualizarPosicion(personaje)})
+ 		game.schedule(2000, {game.removeVisual(self)})
  	}
  	
 }
