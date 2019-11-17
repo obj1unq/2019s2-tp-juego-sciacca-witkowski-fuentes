@@ -91,8 +91,34 @@ object mago inherits Personaje {
 
 	method imagenInicial() = mago_grande
 
+    //mago lanza bola magica ataca 1 esqueleto por vez (mana)
 	method lanzarHabilidad() {
+	    var esqueletosAbatidos=0
+		if (mana>=70){
+			mana -=70
+			game.addVisual(bolaMagica)
+			game.onTick(10, "movimiento",{bolaMagica.movete()})
+			game.onCollideDo(bolaMagica,{ 
+				obstaculo => if(self.hayUnEsqueleto(obstaculo)and esqueletosAbatidos==0){
+									obstaculo.serAtacado(100)
+									esqueletosAbatidos=1
+									bolaMagica.detenerse()
+				               }
+				             
+			})	
+			
+			
+		}
+		else{
+			self.error("No tengo mana para la habilidad!")	
+		}
+		
 	}
+	
+	method hayUnEsqueleto(obstaculo){
+		 return esqueletosNivel1.esUnEsqueleto(obstaculo)
+		         
+		      }
 
 }
 
@@ -197,4 +223,29 @@ object hacha{
  	}
  	
 }
+
+object bolaMagica{
+	var property image = "bolaMagica_.png"
+	var property position = game.center()
+	
+	method serAtacado(cantidad) {}
+ 	
+ 	method chocarContra(personaje) {}
+ 	
+ 	method movete(){
+ 		const x=0.randomUpTo(game.width()).truncate(0)
+ 		const y=0.randomUpTo(game.width()).truncate(0)
+ 		position= game.at(x,y)
+ 		
+ 	}
+ 	method detenerse(){
+ 		game.schedule(1000, {game.removeVisual(self)})
+ 		
+ 	}
+ 	
+ 	
+ 	
+}
+
+
 

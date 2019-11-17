@@ -79,7 +79,12 @@ object esqueletosNivel1{
 	method cargarEsqueletos(){
 		listaDeEsqueletos.forEach{esqueleto => game.addVisual(esqueleto)}
 	}
-
+	
+	method esUnEsqueleto(obstaculo){
+		return listaDeEsqueletos.contains(obstaculo)
+	}
+	
+	
 }
 
 object fantasmasNivel1{
