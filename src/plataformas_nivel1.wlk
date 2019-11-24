@@ -83,4 +83,4 @@ object teleport {
 		   	game.sound("gameOver_no.mp3")
 			game.schedule(4000, {game.stop()})
 	}
-}}
+}
