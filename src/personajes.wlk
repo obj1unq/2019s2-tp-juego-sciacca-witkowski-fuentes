@@ -43,6 +43,7 @@ class Personaje {
 	method morir() {
 		game.say(self, "Te mataron, perdiste el juego =(")
 		self.image("Lapida.png")
+		game.sound("BombaMata.mp3")
 		game.schedule(4000, { game.stop()})
 	}
 
@@ -97,6 +98,7 @@ object mago inherits Personaje {
 		if (mana>=70){
 			mana -=70
 			game.addVisual(bolaMagica)
+			game.sound("sonidoBola.mp3")
 			game.onTick(10, "movimiento",{bolaMagica.movete()})
 			game.onCollideDo(bolaMagica,{ 
 				obstaculo => if(self.hayUnEsqueleto(obstaculo)and esqueletosAbatidos==0){
@@ -167,6 +169,7 @@ object orco inherits Personaje {
 	method lanzarHabilidad() {
 		if (mana >= 70) {
 			position = position.up(3)
+			game.sound("saltar.mp3")
 			mana -= 70
 		} else {
 			game.say(self, "No tengo mana para la habilidad")
@@ -216,6 +219,7 @@ object hacha{
 
  	method serLanzada(personaje){
  		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
+ 		game.sound("lanzarHacha.mp3")
  		game.schedule(500, {self.actualizarPosicion(personaje)})
  		game.schedule(1000, {self.actualizarPosicion(personaje)})
  		game.schedule(1500, {self.actualizarPosicion(personaje)})
@@ -236,6 +240,7 @@ object bolaMagica{
  		const x=0.randomUpTo(game.width()).truncate(0)
  		const y=0.randomUpTo(game.width()).truncate(0)
  		position= game.at(x,y)
+ 		
  		
  	}
  	method detenerse(){

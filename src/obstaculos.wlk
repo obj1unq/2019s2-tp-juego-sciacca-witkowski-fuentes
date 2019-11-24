@@ -34,6 +34,7 @@ class Ghost {
 	
 	method chocarContra(personaje) {
 		personaje.morir()
+		
 	}
 	
 	method actualizarPosicion(){

@@ -37,6 +37,7 @@ object comoJugar{
 		game.addVisualIn(como_jugar, game.at(0,0))
 		game.addVisualIn(personaje.imagenInicial(),game.at(13, 3))	
 		game.schedule(3000, {nivel1.iniciar(personaje)})///
+		
 	}
 }
 
@@ -53,6 +54,7 @@ object nivel1 {
 		escaleras_nivel1.cargarEscaleras()
 		esqueletosNivel1.cargarEsqueletos()
 		fantasmasNivel1.cargarFantasmas()
+		game.sound("sonidoFondo.mp3")
 		game.addVisual(personaje)
 		game.showAttributes(personaje)
 		pocionesNivel1.cargarPociones()///
@@ -72,5 +74,6 @@ object nivel1 {
 		// eventos 
 		
 		game.onTick(500, "movimientos de fantasmas", {fantasmasNivel1.actualizarPosiciones()})
+		
 	}
 }
