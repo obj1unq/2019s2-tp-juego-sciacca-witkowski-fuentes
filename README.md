@@ -14,3 +14,5 @@ Integrantes:
 #### Descripción e instrucciones
 
 (completar)
+
+![capturaJuego](assets/cartel.png)
