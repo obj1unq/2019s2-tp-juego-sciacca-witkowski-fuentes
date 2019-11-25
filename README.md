@@ -83,18 +83,24 @@ Estas habilidades dependen de cada personaje y se lanzan con la tecla "h":
 
 ![capturaJuego13](assets/tutorial/habilidad_hacha_vikingo2.png)
 
+#### Barra de Vida y Mana:
+
+La última incorporación del Juego son las barras que indican la cantidad de Vida y Mana de cada uno de los personajes, que va cambiando a medida que van avanzando.
+
+![capturaJuego14](assets/tutorial/barraVIdaMana3.png)
+
 #### Pasar de Nivel:
 
 Una vez sorteados todos los obstaculos se llega al final del nivel 1 
 
-![capturaJuego14](assets/tutorial/pasar_al_2do_nivel2.png)
+![capturaJuego15](assets/tutorial/pasar_al_2do_nivel2.png)
 
 
 #### Nivel 2 y fin de Juego:
 
 Luego de unos segundos se pasa al nivel 2, que esta en construccion,( ojo que hay fantasmitas rondando ) y se llega al final del juego
 
-![capturaJuego15](assets/tutorial/nivel2_2.png)
+![capturaJuego16](assets/tutorial/nivel2_2.png)
 
 
 
