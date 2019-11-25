@@ -3,6 +3,7 @@ import personajes.*
 import objetosVisuales.*
 import plataformas_nivel1.*
 import obstaculos.*
+import cosillas.*
 
 
 object seleccion{
@@ -75,5 +76,9 @@ object nivel1 {
 		
 		game.onTick(500, "movimientos de fantasmas", {fantasmasNivel1.actualizarPosiciones()})
 		
+		// barras
+		personaje.indiceVidaInicial()
+		game.addVisualIn(barravida.devolviendoVida(personaje.indiceVida()),posicionBarras.posicionVida())
+		game.addVisualIn(barravida.devolviendoMana(personaje.mana()),posicionBarras.posicionMana())
 	}
 }

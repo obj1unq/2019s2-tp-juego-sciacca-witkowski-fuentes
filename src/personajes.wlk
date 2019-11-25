@@ -2,12 +2,20 @@ import wollok.game.*
 import plataformas_nivel1.*
 import obstaculos.*
 import objetosVisuales.*
+import cosillas.*
 
 class Personaje {
 
 	var property position = game.at(0, 2)
 	var posicionAnterior = game.at(0, 17)
-
+	var property indiceVida
+	
+	
+	method indiceVidaInicial(){
+		indiceVida = 4
+	}
+	
+	
 	method fuerza()
 
 	method image(imagen)
@@ -24,6 +32,9 @@ class Personaje {
 
 	method bajarVida(danio) {
 		self.vida(self.vida() - danio)
+		game.removeVisual(barravida.devolviendoVida(indiceVida))
+		indiceVida = (0).max(indiceVida-1)
+		game.addVisualIn(barravida.devolviendoVida(indiceVida),posicionBarras.posicionVida())
 		if (self.vida() < 0) {
 			self.morir()
 		}
@@ -48,8 +59,11 @@ class Personaje {
 	}
 
 	method ganarMana() {
+		barravida.quitandoBarraMana(self.mana())
 		self.mana(self.mana() + 50)
+		barravida.insertandoBarraMana(self.mana())
 	}
+
 
 	// Posicionamiento
 	method moverIzquierda() {
@@ -80,7 +94,7 @@ class Personaje {
 }
 
 object mago inherits Personaje {
-
+	
 	var property image = "mago.png"
 	// Atributos del personaje
 	var property vida = 50
@@ -96,19 +110,20 @@ object mago inherits Personaje {
 	method lanzarHabilidad() {
 	    var esqueletosAbatidos=0
 		if (mana>=70){
+			barravida.quitandoBarraMana(mana)
 			mana -=70
+			barravida.insertandoBarraMana(mana)
 			game.addVisual(bolaMagica)
 			game.sound("sonidoBola.mp3")
 			game.onTick(10, "movimiento",{bolaMagica.movete()})
 			game.onCollideDo(bolaMagica,{ 
-				obstaculo => if(self.hayUnEsqueleto(obstaculo)and esqueletosAbatidos==0){
+				obstaculo => if(self.hayUnEsqueleto(obstaculo) and esqueletosAbatidos==0){
 									obstaculo.serAtacado(100)
 									esqueletosAbatidos=1
 									bolaMagica.detenerse()
 				               }
 				             
 			})	
-			
 			
 		}
 		else{
@@ -121,7 +136,10 @@ object mago inherits Personaje {
 		 return esqueletosNivel1.esUnEsqueleto(obstaculo)
 		         
 		      }
-
+	
+	override method indiceVidaInicial(){
+		indiceVida = 3
+	}
 }
 
 object guerrero inherits Personaje {
@@ -141,8 +159,13 @@ object guerrero inherits Personaje {
 	
 	method lanzarHabilidad() {
 		if (mana >= 70) {
+			barravida.quitandoBarraMana(mana)
+			game.removeVisual(barravida.devolviendoVida(indiceVida))
 			vida += 50
 			mana -= 70
+			indiceVida += 1
+			barravida.insertandoBarraMana(mana)
+			game.addVisualIn(barravida.devolviendoVida(indiceVida),posicionBarras.posicionVida())
 			game.say(self, "Recuperaste 50 de salud!")
 		} else {
 			game.say(self, "No tengo mana para la habilidad")
@@ -168,12 +191,18 @@ object orco inherits Personaje {
 	
 	method lanzarHabilidad() {
 		if (mana >= 70) {
+			barravida.quitandoBarraMana(mana)
 			position = position.up(3)
 			game.sound("saltar.mp3")
 			mana -= 70
+			barravida.insertandoBarraMana(mana)
 		} else {
 			game.say(self, "No tengo mana para la habilidad")
 		}
+	}
+	
+	override method indiceVidaInicial(){
+		indiceVida = 5
 	}
 
 }
