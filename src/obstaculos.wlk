@@ -40,6 +40,8 @@ class Ghost {
 	method actualizarPosicion(){
 		if(position.y()<15){position = position.up(1)} else {position = game.at(position.x(),0)}
 	} 
+	
+	
 }
 
 /// pocion que da mana!!
@@ -102,4 +104,19 @@ object fantasmasNivel1{
 		listaDeFantasmas.forEach{ fantasma => fantasma.actualizarPosicion()}
 	}
 
+}
+
+// NIVEL 2
+
+object fantasmas_nivel2{
+	var property position = game.center()
+	const property image="ghost.png"	
+	
+	method moverBloque(){
+		const x=0.randomUpTo(game.width()).truncate(0)
+ 		const y=0.randomUpTo(game.width()).truncate(0)
+ 		position= game.at(x,y)
+	}
+	
+	
 }

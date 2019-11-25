@@ -1,5 +1,6 @@
 import wollok.game.*
 import personajes.*
+import niveles.*
 
 // plataformas
 
@@ -81,6 +82,8 @@ object teleport {
 		    image = game.uniqueCollider(self).imagenDelFinal()
 		   	game.say(self,"Has Superado el nivel")
 		   	game.sound("gameOver_no.mp3")
-			game.schedule(4000, {game.stop()})
+			game.schedule(4000, {nivel2.iniciar(personaje)})
 	}
-}}
+}
+
+
