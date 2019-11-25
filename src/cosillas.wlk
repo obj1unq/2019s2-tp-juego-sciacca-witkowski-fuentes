@@ -2,6 +2,8 @@ import objetosVisuales.*
 import wollok.game.*
 
 object barravida{
+	//TODO: Pensar una estrategia donde la imagen de la barra se calcule a partir del personaje (y no que el personaje le tenga que avisar cada vez que cambia) [Como el ejemplo de pepita gris - grande]
+	
 	const vidas = [vida0,vida10,vida25,vida50,vida75,vida100]
 	const manas = [mana0,mana25,mana50,mana75,mana100]
 	

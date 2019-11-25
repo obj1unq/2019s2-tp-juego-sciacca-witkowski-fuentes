@@ -215,24 +215,23 @@ object vikingo inherits Personaje {
  								else position.x() - posicionAnterior.x()
  	
  	method lanzarHabilidad(){
- 			if(mana>=70){
- 				barravida.quitandoBarraMana(mana)
+ 			if(mana>=70){ // Esta validación se repite
+ 				barravida.quitandoBarraMana(mana) // Esto es general de todos los personajes, estaría bueno tenerlo una sola vez en la superclase
  				mana-=70
-				game.addVisual(hacha)
-  				game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
+ 				const hacha = new Hacha(position = position)	
   				hacha.serLanzada(self)
   				barravida.insertandoBarraMana(mana)		
  			}
  			else{
- 				game.say(self, "No tengo mana para la habilidad")	
+ 				game.say(self, "No tengo mana para la habilidad") //TODO: Lanzar un error
  			}
  			
  	} 
 }
 
-object hacha{
+class Hacha{
  	var property image = "hacha.png"
- 	var property position = game.at(-1,-1)
+ 	var property position
  	
  	method serAtacado(cantidad) {}
  	
@@ -248,6 +247,9 @@ object hacha{
 
  	method serLanzada(personaje){
  		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
+ 		
+		game.addVisual(self)
+		game.onCollideDo(self, { obstaculo => obstaculo.serAtacado(100) })
  		game.sound("lanzarHacha.mp3")
  		game.schedule(500, {self.actualizarPosicion(personaje)})
  		game.schedule(1000, {self.actualizarPosicion(personaje)})
