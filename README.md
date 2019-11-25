@@ -14,3 +14,5 @@ Integrantes:
 #### Descripción e instrucciones
 
 (completar)
+
+![capturaJuego2](assets/ghost.png)
