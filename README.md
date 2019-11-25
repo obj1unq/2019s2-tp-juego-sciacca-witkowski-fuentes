@@ -2,7 +2,7 @@
 
 ![capturaJuego](assets/capturaJuego.png)
 
-#### Grupo: Nombre del Grupo
+#### Grupo: Dream Team
 
 Integrantes:
 
