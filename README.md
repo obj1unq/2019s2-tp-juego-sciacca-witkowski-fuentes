@@ -15,4 +15,4 @@ Integrantes:
 
 (completar)
 
-![capturaJuego2](assets/ghost.png)
+![capturaJuego2](assets/tutorial/elegirAlMago.png)
