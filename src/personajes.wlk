@@ -236,6 +236,8 @@ object hacha{
  	
  	method chocarContra(personaje) {}
  	
+ 	method puedoTreparlo() = false
+ 	
  	method actualizarPosicion(personaje){
  		if (personaje.proximoPaso()>0){position = position.right(1)}
  			else if(self.position().x()==0){ position = game.at(17,position.y())}
@@ -260,6 +262,8 @@ object bolaMagica{
 	method serAtacado(cantidad) {}
  	
  	method chocarContra(personaje) {}
+ 	
+ 	method puedoTreparlo() = false
  	
  	method movete(){
  		const x=0.randomUpTo(game.width()).truncate(0)
