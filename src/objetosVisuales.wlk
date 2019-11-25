@@ -66,6 +66,13 @@ object vikingo_seleccion {
 	
 }
 
+object iNivel2{
+	const property image ="pantalla_castleEntrance2.jpg"
+}
+
+object cartelEnConstruccion{
+	const property image ="cartelito.png"
+}
 
 
 

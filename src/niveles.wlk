@@ -77,3 +77,23 @@ object nivel1 {
 		
 	}
 }
+
+object nivel2 {
+
+	method iniciar(personaje) {
+		
+		//Inicialización de nivel
+		
+		game.clear()
+		game.addVisualIn(iNivel2, game.at(0,0))
+		
+	    
+		game.addVisualIn(personaje,game.at(0,12))
+		game.addVisualIn(cartelEnConstruccion, game.at(6,10))
+		game.addVisual(fantasmas_nivel2)
+		game.onTick(300, "movimiento",{fantasmas_nivel2.moverBloque()})
+		game.schedule(6000, {game.stop()})
+	
+}
+
+}
