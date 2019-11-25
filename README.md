@@ -15,4 +15,4 @@ Integrantes:
 
 (completar)
 
-![capturaJuego](assets/cartel.png)
+![capturaJuego2](assets/ghost.png)
