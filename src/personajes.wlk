@@ -215,9 +215,18 @@ object vikingo inherits Personaje {
  								else position.x() - posicionAnterior.x()
  	
  	method lanzarHabilidad(){
-			game.addVisual(hacha)
-  			game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
-  			hacha.serLanzada(self)	
+ 			if(mana>=70){
+ 				barravida.quitandoBarraMana(mana)
+ 				mana-=70
+				game.addVisual(hacha)
+  				game.onCollideDo(hacha, { obstaculo => obstaculo.serAtacado(100) })	
+  				hacha.serLanzada(self)
+  				barravida.insertandoBarraMana(mana)		
+ 			}
+ 			else{
+ 				game.say(self, "No tengo mana para la habilidad")	
+ 			}
+ 			
  	} 
 }
 
