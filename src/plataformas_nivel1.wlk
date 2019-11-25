@@ -79,7 +79,6 @@ object teleport {
 	method serAtacado(cantidad) {}
 	
 	method chocarContra(personaje) {
-		    image = game.uniqueCollider(self).imagenDelFinal()
 		   	game.say(self,"Has Superado el nivel")
 		   	game.sound("gameOver_no.mp3")
 			game.schedule(4000, {nivel2.iniciar(personaje)})

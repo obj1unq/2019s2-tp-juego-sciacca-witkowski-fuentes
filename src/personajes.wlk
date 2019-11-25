@@ -67,6 +67,8 @@ class Personaje {
 
 	// Posicionamiento
 	method moverIzquierda() {
+		if ( game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo() ) 
+			self.error("Tengo que subir para poder moverme!")
 		if (position.x() > 0) {
 			posicionAnterior = position
 			position = position.left(1)
@@ -74,6 +76,8 @@ class Personaje {
 	}
 
 	method moverDerecha() {
+		if ( game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo() ) 
+			self.error("Tengo que subir para poder moverme!")
 		if (position.x() < 17) {
 			posicionAnterior = position
 			position = position.right(1)
@@ -101,8 +105,6 @@ object mago inherits Personaje {
 	var property mana = 70
 	const property fuerza = 20
 	const inteligencia = 100
-
-	method imagenDelFinal() = "magoTeleport.png"
 
 	method imagenInicial() = mago_grande
 
@@ -151,8 +153,6 @@ object guerrero inherits Personaje {
 	const property fuerza = 50
 	const inteligencia = 70
 
-	method imagenDelFinal() = "guerreroTeleport.png"
-
 	method imagenInicial() = guerrero_grande
 
 	// El Guerrero tiene como habilidad especial la curación
@@ -182,8 +182,6 @@ object orco inherits Personaje {
 	var property mana = 70
 	const property fuerza = 70
 	const inteligencia = 20
-
-	method imagenDelFinal() = "orcoTeleport.png"
 
 	method imagenInicial() = orco_grande
 
@@ -215,8 +213,6 @@ object vikingo inherits Personaje {
 	var property mana = 70
 	const property fuerza = 100
 	const inteligencia = 40
-
-	method imagenDelFinal() = "vikingoTeleport.png"
 
 	method imagenInicial() = vikingo_grande
 

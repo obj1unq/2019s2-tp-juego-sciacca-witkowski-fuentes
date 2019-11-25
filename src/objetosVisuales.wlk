@@ -115,17 +115,17 @@ object mana0{
 }
 
 
-<<<<<<< HEAD
+
 object fondovida {
 	const property image = "fondobarra.png"	
-=======
+}
+
 object iNivel2{
 	const property image ="pantalla_castleEntrance2.jpg"
 }
 
 object cartelEnConstruccion{
 	const property image ="cartelito.png"
->>>>>>> branch 'master' of https://github.com/obj1unq/2019s2-tp-juego-sciacca-witkowski-fuentes.git
 }
 
 

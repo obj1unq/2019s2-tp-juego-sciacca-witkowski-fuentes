@@ -55,12 +55,11 @@ object nivel1 {
 		escaleras_nivel1.cargarEscaleras()
 		esqueletosNivel1.cargarEsqueletos()
 		fantasmasNivel1.cargarFantasmas()
+		teleport.ponerTeleport()
 		game.sound("sonidoFondo.mp3")
 		game.addVisual(personaje)
 		game.showAttributes(personaje)
 		pocionesNivel1.cargarPociones()///
-		teleport.ponerTeleport()
-		
 		//Colisiones
 		
 		game.onCollideDo(personaje, { obstaculo => obstaculo.chocarContra(personaje) })
