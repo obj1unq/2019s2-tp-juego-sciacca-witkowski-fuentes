@@ -9,10 +9,9 @@ object barravida{
 	method devolviendoMana(mana)= manas.get(self.calculandoIndiceMana(mana))
 	method quitandoBarraMana(mana)=game.removeVisual(self.devolviendoMana(mana))
 	method insertandoBarraMana(mana)=game.addVisualIn(self.devolviendoMana(mana),posicionBarras.posicionMana())
-	method calculandoIndiceMana(mana) = self.mana120(mana)+ self.mana100(mana) + self.mana75(mana) + self.mana50(mana) + self.mana25(mana)
+	method calculandoIndiceMana(mana) = self.mana100(mana) + self.mana75(mana) + self.mana50(mana) + self.mana25(mana)
 	
-	method mana120(mana) = if(mana == 120) {4} else {0}
-	method mana100(mana) = if(mana == 100) {4} else {0}
+	method mana100(mana) = if(mana >= 100) {4} else {0}
 	method mana75(mana) = if(mana == 70) {3} else {0}
 	method mana50(mana) = if(mana == 50) {2} else {0}
 	method mana25(mana) = if(mana == 30) {1} else {0}

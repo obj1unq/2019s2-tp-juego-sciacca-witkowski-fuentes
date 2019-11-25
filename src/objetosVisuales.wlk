@@ -66,19 +66,6 @@ object vikingo_seleccion {
 	
 }
 
-<<<<<<< HEAD
-object fondovida {
-	const property image = "fondobarra.png"	
-=======
-object iNivel2{
-	const property image ="pantalla_castleEntrance2.jpg"
-}
-
-object cartelEnConstruccion{
-	const property image ="cartelito.png"
->>>>>>> branch 'master' of https://github.com/obj1unq/2019s2-tp-juego-sciacca-witkowski-fuentes.git
-}
-
 object vida100 {
 	const property image = "barravida100.png"	
 }
@@ -126,4 +113,19 @@ object mana10{
 object mana0{
 	const property image = "barramana0.png"	
 }
+
+
+<<<<<<< HEAD
+object fondovida {
+	const property image = "fondobarra.png"	
+=======
+object iNivel2{
+	const property image ="pantalla_castleEntrance2.jpg"
+}
+
+object cartelEnConstruccion{
+	const property image ="cartelito.png"
+>>>>>>> branch 'master' of https://github.com/obj1unq/2019s2-tp-juego-sciacca-witkowski-fuentes.git
+}
+
 
