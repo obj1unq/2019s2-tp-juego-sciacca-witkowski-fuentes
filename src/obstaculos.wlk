@@ -1,34 +1,93 @@
 import wollok.game.*
 import personajes.*
 
-class Skeleton {
-	var property image = "skeleton_warrior.png"
-	var property position 
-	var life = 100
-	var danio = 20
-	
+class Enemigos{
+	var property position = game.at(0,0)
 	method puedoTreparlo() = false
-	
+
+}
+
+class Atacables inherits Enemigos{
+	method life()
+	method life(cantidad)
+	method danio()
 	method serAtacado(cantidad) {
-		life-=cantidad
+		self.life(self.life()-cantidad)
 		game.say(self,"Recibi daño =/")
-		if(life<=0) {
+		if(self.life()<=0) {
 			game.removeVisual(self)
 		}
 	}
 	
 	method chocarContra(personaje) {
-		personaje.bajarVida(danio)
+		personaje.bajarVida(self.danio())
 		personaje.volverAPosicionAnterior()
-		game.say(self,"El esqueleto te ha lastimado!")	
+		game.say(self,"El enemigo te ha lastimado!")	
 	} 
 }
 
-class Ghost {
-	var property image = "ghost.png"
-	var property position 
+class Skeleton inherits Atacables{
+	var property image = "skeleton_warrior.png"
+	 
+	var property life = 100
+	var property danio = 20	
+}
+
+class Fuego{
+	var property position
+	var property image
+							
 	
-	method puedoTreparlo() = false
+	method actualizarPosicion(dragon){
+ 		if (dragon.proximoPaso()>0){position = position.right(1)}
+ 					else {position = position.left(1)}				
+ 	}		
+ 	
+ 	method serLanzado(dragon,posicionInicial){
+ 		game.schedule(500, {self.actualizarPosicion(dragon)})
+ 		game.schedule(1000, {self.actualizarPosicion(dragon)})
+ 		game.schedule(2000, {game.removeVisual(self)})
+		position = posicionInicial
+ 	}
+	
+	method serAtacado(cantidad) {}
+	
+	method chocarContra(personaje) {
+		personaje.morir()
+		
+	}
+}
+
+class Dragon inherits Atacables{
+	var property image 						
+	var posicionSiguiente = game.at(0,0)
+	var property life = 20
+	var property danio = 100
+	var property fuego
+	 
+	
+	method lanzarFuego(){
+		game.addVisual(fuego)
+		fuego.serLanzado(self,posicionSiguiente)
+		
+	 }
+	 
+	 override method serAtacado(cantidad) {
+		self.life(self.life()-cantidad)
+		game.say(self,"Recibi daño =/")
+		if(self.life()<=0) {
+			dragonesNivel2.listaDeDragones().remove(self)
+			game.removeVisual(self)
+		}		
+	 }
+	 
+	 method proximoPaso() = posicionSiguiente.x() - position.x()  
+}
+
+
+
+class Ghost inherits Enemigos{
+	var property image = "ghost.png" 
 	
 	method serAtacado(cantidad) {}
 	
@@ -83,7 +142,7 @@ object esqueletosNivel1{
 		listaDeEsqueletos.forEach{esqueleto => game.addVisual(esqueleto)}
 	}
 	
-	method esUnEsqueleto(obstaculo){
+	method hayUnEnemigo(obstaculo){
 		return listaDeEsqueletos.contains(obstaculo)
 	}
 	
@@ -108,14 +167,31 @@ object fantasmasNivel1{
 
 // NIVEL 2
 
-object fantasmas_nivel2{
-	var property position = game.center()
-	const property image="ghost.png"	
+
+
+object dragonesNivel2{
+	const fuego1 = new Fuego (position = game.at(3, 5), image = "fuegoL.png")
+	const fuego2 = new Fuego (position = game.at(15, 5),image = "fuegoR.png")
+	const fuego3 = new Fuego (position = game.at(6, 8),image = "fuegoR.png")
+	const fuego4 = new Fuego (position = game.at(11, 8),image = "fuegoL.png")
+	var property fuegos = [fuego1,fuego2,fuego3,fuego4] 
 	
-	method moverBloque(){
-		const x=0.randomUpTo(game.width()).truncate(0)
- 		const y=0.randomUpTo(game.width()).truncate(0)
- 		position= game.at(x,y)
+	const drag1 = new Dragon (position = game.at(4, 5), image = "dragL.png",fuego = fuego1, posicionSiguiente = game.at(3,5))
+	const drag2 = new Dragon (position = game.at(14, 5),  image = "dragR.png",fuego = fuego2, posicionSiguiente = game.at(15,5))
+	const drag3 = new Dragon (position = game.at(5, 8),  image = "dragR.png",fuego = fuego3, posicionSiguiente = game.at(6,8))
+	const drag4 = new Dragon (position = game.at(12, 8),  image = "dragL.png",fuego = fuego4, posicionSiguiente = game.at(11,8))
+	const property listaDeDragones = [drag1,drag2,drag3,drag4] 
+	
+	method cargarDragones(){
+		listaDeDragones.forEach{dragon => game.addVisual(dragon)}
+	}
+	
+	method lanzarFuegos(){
+		listaDeDragones.forEach{dragon => dragon.lanzarFuego()}
+	}
+	
+	method hayUnEnemigo(obstaculo){
+		return listaDeDragones.contains(obstaculo)
 	}
 	
 	

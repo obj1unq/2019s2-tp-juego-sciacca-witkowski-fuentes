@@ -104,13 +104,12 @@ object mago inherits Personaje {
 	var property vida = 50
 	var property mana = 70
 	const property fuerza = 20
-	const inteligencia = 100
 
 	method imagenInicial() = mago_grande
 
     //mago lanza bola magica ataca 1 esqueleto por vez (mana)
 	method lanzarHabilidad() {
-	    var esqueletosAbatidos=0
+		var enemigosAbatidos = 0
 		if (mana>=70){
 			barravida.quitandoBarraMana(mana)
 			mana -=70
@@ -119,25 +118,22 @@ object mago inherits Personaje {
 			game.sound("sonidoBola.mp3")
 			game.onTick(10, "movimiento",{bolaMagica.movete()})
 			game.onCollideDo(bolaMagica,{ 
-				obstaculo => if(self.hayUnEsqueleto(obstaculo) and esqueletosAbatidos==0){
-									obstaculo.serAtacado(100)
-									esqueletosAbatidos=1
-									bolaMagica.detenerse()
-				               }
-				             
-			})	
+				obstaculo => if(self.esEnemigo(obstaculo) and enemigosAbatidos==0){
+															obstaculo.serAtacado(100)
+															enemigosAbatidos=1 
+															bolaMagica.detenerse()
+														   }
+									})	
 			
-		}
-		else{
-			self.error("No tengo mana para la habilidad!")	
-		}
+			}
+			else{
+				self.error("No tengo mana para la habilidad!")	
+			}
 		
 	}
 	
-	method hayUnEsqueleto(obstaculo){
-		 return esqueletosNivel1.esUnEsqueleto(obstaculo)
+	method esEnemigo(obstaculo) = esqueletosNivel1.hayUnEnemigo(obstaculo) or dragonesNivel2.hayUnEnemigo(obstaculo) 
 		         
-		      }
 	
 	override method indiceVidaInicial(){
 		indiceVida = 3
@@ -151,7 +147,6 @@ object guerrero inherits Personaje {
 	var property vida = 70
 	var property mana = 70
 	const property fuerza = 50
-	const inteligencia = 70
 
 	method imagenInicial() = guerrero_grande
 
@@ -181,7 +176,6 @@ object orco inherits Personaje {
 	var property vida = 100
 	var property mana = 70
 	const property fuerza = 70
-	const inteligencia = 20
 
 	method imagenInicial() = orco_grande
 
@@ -212,7 +206,6 @@ object vikingo inherits Personaje {
 	var property vida = 70
 	var property mana = 70
 	const property fuerza = 100
-	const inteligencia = 40
 
 	method imagenInicial() = vikingo_grande
 
@@ -273,13 +266,8 @@ object bolaMagica{
  		
  	}
  	method detenerse(){
- 		game.schedule(1000, {game.removeVisual(self)})
- 		
- 	}
- 	
- 	
- 	
+ 		game.removeVisual(self)
+ 	} 	
 }
-
 
 

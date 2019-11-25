@@ -55,11 +55,12 @@ object nivel1 {
 		escaleras_nivel1.cargarEscaleras()
 		esqueletosNivel1.cargarEsqueletos()
 		fantasmasNivel1.cargarFantasmas()
-		teleport.ponerTeleport()
+		teleport.ponerFin()
 		game.sound("sonidoFondo.mp3")
 		game.addVisual(personaje)
 		game.showAttributes(personaje)
 		pocionesNivel1.cargarPociones()///
+		
 		//Colisiones
 		
 		game.onCollideDo(personaje, { obstaculo => obstaculo.chocarContra(personaje) })
@@ -90,13 +91,34 @@ object nivel2 {
 		
 		game.clear()
 		game.addVisualIn(iNivel2, game.at(0,0))
+	    plataformas_nivel2.cargarPlataformas()
+	    escaleras_nivel2.cargarEscaleras()
+	    princesa.ponerFin()
+	    personaje.position(game.at(8,2))
+		dragonesNivel2.cargarDragones()
+		bloqueoNivel2.cargarBloqueo()
+		llaveN2.ponerLlave()
+		game.addVisual(personaje)
 		
-	    
-		game.addVisualIn(personaje,game.at(0,12))
-		game.addVisualIn(cartelEnConstruccion, game.at(6,10))
-		game.addVisual(fantasmas_nivel2)
-		game.onTick(300, "movimiento",{fantasmas_nivel2.moverBloque()})
-		game.schedule(6000, {game.stop()})
+		//Configuración Teclas
+		keyboard.left().onPressDo {personaje.moverIzquierda()}
+		keyboard.right().onPressDo {personaje.moverDerecha()}
+		keyboard.up().onPressDo {personaje.subir()}
+		keyboard.a().onPressDo {personaje.atacar()}	
+		keyboard.h().onPressDo {personaje.lanzarHabilidad()}	
+		
+		// eventos 
+		
+		game.onTick(5000, "lanzar fuego",{if (!dragonesNivel2.listaDeDragones().isEmpty()){ dragonesNivel2.lanzarFuegos() } })
+		
+		//Colisiones
+		
+		game.onCollideDo(personaje, { obstaculo => obstaculo.chocarContra(personaje) })
+		
+		// barras
+		personaje.indiceVidaInicial()
+		game.addVisualIn(barravida.devolviendoVida(personaje.indiceVida()),posicionBarras.posicionVida())
+		game.addVisualIn(barravida.devolviendoMana(personaje.mana()),posicionBarras.posicionMana())
 	
 }
 
