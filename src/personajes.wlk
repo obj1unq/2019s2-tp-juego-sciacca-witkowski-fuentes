@@ -61,9 +61,13 @@ class Personaje {
 
 
 	// Posicionamiento
-	method moverIzquierda() {
+	
+	method verificarMovimiento(){
 		if ( game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo() ) 
-			self.error("Tengo que subir para poder moverme!")
+			self.error("No puedo realizar el movimiento")	
+	}
+	method moverIzquierda() {
+		self.verificarMovimiento()	
 		if (position.x() > 0) {
 			posicionAnterior = position
 			position = position.left(1)
@@ -71,8 +75,7 @@ class Personaje {
 	}
 
 	method moverDerecha() {
-		if ( game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo() ) 
-			self.error("Tengo que subir para poder moverme!")
+		self.verificarMovimiento()
 		if (position.x() < 17) {
 			posicionAnterior = position
 			position = position.right(1)
@@ -80,8 +83,7 @@ class Personaje {
 	}
 
 	method subir() {
-		if (not (game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo())) 
-			self.error("No puedo subir!")
+		self.verificarMovimiento()
 		posicionAnterior = position
 		position = self.position().up(1)
 	}
