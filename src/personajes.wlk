@@ -8,13 +8,6 @@ class Personaje {
 
 	var property position = game.at(0, 2)
 	var posicionAnterior = game.at(0, 17)
-	var property indiceVida
-	
-	
-	method indiceVidaInicial(){
-		indiceVida = 4
-	}
-	
 	
 	method fuerza()
 
@@ -29,12 +22,14 @@ class Personaje {
 	method mana(mana)
 	
 	method serAtacado(cantidad) {}
+	
+	
 
 	method bajarVida(danio) {
+		barraVida.quitandoBarraVida()
 		self.vida(self.vida() - danio)
-		game.removeVisual(barravida.devolviendoVida(indiceVida))
-		indiceVida = (0).max(indiceVida-1)
-		game.addVisualIn(barravida.devolviendoVida(indiceVida),posicionBarras.posicionVida())
+		barraVida.insertandoBarraVida(self)
+			
 		if (self.vida() < 0) {
 			self.morir()
 		}
@@ -59,9 +54,9 @@ class Personaje {
 	}
 
 	method ganarMana() {
-		barravida.quitandoBarraMana(self.mana())
+		barraMana.quitandoBarraMana()
 		self.mana(self.mana() + 50)
-		barravida.insertandoBarraMana(self.mana())
+		barraMana.insertandoBarraMana(self)
 	}
 
 
@@ -94,6 +89,11 @@ class Personaje {
 	method volverAPosicionAnterior() {
 		position = posicionAnterior
 	}
+	
+	method lanzarHabilidad() {
+			barraMana.quitandoBarraMana()
+			barraMana.insertandoBarraMana(self)	
+	}
 
 }
 
@@ -108,12 +108,11 @@ object mago inherits Personaje {
 	method imagenInicial() = mago_grande
 
     //mago lanza bola magica ataca 1 esqueleto por vez (mana)
-	method lanzarHabilidad() {
+	override method lanzarHabilidad() {
 		var enemigosAbatidos = 0
 		if (mana>=70){
-			barravida.quitandoBarraMana(mana)
 			mana -=70
-			barravida.insertandoBarraMana(mana)
+			super()
 			game.addVisual(bolaMagica)
 			game.sound("sonidoBola.mp3")
 			game.onTick(10, "movimiento",{bolaMagica.movete()})
@@ -134,10 +133,6 @@ object mago inherits Personaje {
 	
 	method esEnemigo(obstaculo) = esqueletosNivel1.hayUnEnemigo(obstaculo) or dragonesNivel2.hayUnEnemigo(obstaculo) 
 		         
-	
-	override method indiceVidaInicial(){
-		indiceVida = 3
-	}
 }
 
 object guerrero inherits Personaje {
@@ -152,15 +147,13 @@ object guerrero inherits Personaje {
 
 	// El Guerrero tiene como habilidad especial la curación
 	
-	method lanzarHabilidad() {
+	override method lanzarHabilidad() {
 		if (mana >= 70) {
-			barravida.quitandoBarraMana(mana)
-			game.removeVisual(barravida.devolviendoVida(indiceVida))
+			barraVida.quitandoBarraVida()
 			vida += 50
 			mana -= 70
-			indiceVida += 1
-			barravida.insertandoBarraMana(mana)
-			game.addVisualIn(barravida.devolviendoVida(indiceVida),posicionBarras.posicionVida())
+			barraVida.insertandoBarraVida(self)
+			super()
 			game.say(self, "Recuperaste 50 de salud!")
 		} else {
 			game.say(self, "No tengo mana para la habilidad")
@@ -181,21 +174,17 @@ object orco inherits Personaje {
 
 	// El orco tiene la habilidad de saltar a la plataforma de arriba
 	
-	method lanzarHabilidad() {
+	override method lanzarHabilidad() {
 		if (mana >= 70) {
-			barravida.quitandoBarraMana(mana)
 			position = position.up(3)
 			game.sound("saltar.mp3")
 			mana -= 70
-			barravida.insertandoBarraMana(mana)
+			super()	
 		} else {
 			game.say(self, "No tengo mana para la habilidad")
 		}
 	}
 	
-	override method indiceVidaInicial(){
-		indiceVida = 5
-	}
 
 }
 
@@ -214,13 +203,13 @@ object vikingo inherits Personaje {
 	method proximoPaso() = if (self.position().x() == 0 ) 17
  								else position.x() - posicionAnterior.x()
  	
- 	method lanzarHabilidad(){
+ 	override method lanzarHabilidad(){
  			if(mana>=70){ // Esta validación se repite
- 				barravida.quitandoBarraMana(mana) // Esto es general de todos los personajes, estaría bueno tenerlo una sola vez en la superclase
+ 				
  				mana-=70
  				const hacha = new Hacha(position = position)	
   				hacha.serLanzada(self)
-  				barravida.insertandoBarraMana(mana)		
+  				super()		
  			}
  			else{
  				game.say(self, "No tengo mana para la habilidad") //TODO: Lanzar un error

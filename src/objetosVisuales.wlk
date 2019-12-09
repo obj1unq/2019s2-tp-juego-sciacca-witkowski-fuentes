@@ -62,63 +62,9 @@ object orco_seleccion {
 
 object vikingo_seleccion {
 	var property position = new Position(x = 13, y = 2)
-	const property image = "4vikingo.png"
-	
+	const property image = "4vikingo.png"	
 }
 
-object vida100 {
-	const property image = "barravida100.png"	
-}
-
-object vida75{
-	const property image = "barravida75.png"	
-}
-
-object vida50{
-	const property image = "barravida50.png"	
-}
-
-object vida25{
-	const property image = "barravida25.png"	
-}
-
-object vida10{
-	const property image = "barravida10.png"	
-}
-
-object vida0{
-	const property image = "barravida0.png"	
-}
-
-object mana100{
-	const property image = "barramana100.png"	
-}
-
-object mana75{
-	const property image = "barramana75.png"	
-}
-
-object mana50{
-	const property image = "barramana50.png"	
-}
-
-object mana25{
-	const property image = "barramana25.png"	
-}
-
-object mana10{
-	const property image = "barramana10.png"	
-}
-
-object mana0{
-	const property image = "barramana0.png"	
-}
-
-
-
-object fondovida {
-	const property image = "fondobarra.png"	
-}
 
 object iNivel2{
 	const property image ="pantalla_castleEntrance2.jpg"

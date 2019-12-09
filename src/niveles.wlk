@@ -77,9 +77,9 @@ object nivel1 {
 		game.onTick(500, "movimientos de fantasmas", {fantasmasNivel1.actualizarPosiciones()})
 		
 		// barras
-		personaje.indiceVidaInicial()
-		game.addVisualIn(barravida.devolviendoVida(personaje.indiceVida()),posicionBarras.posicionVida())
-		game.addVisualIn(barravida.devolviendoMana(personaje.mana()),posicionBarras.posicionMana())
+		barraVida.insertandoBarraVida(personaje)
+		barraMana.insertandoBarraMana(personaje)
+		
 	}
 }
 
@@ -116,9 +116,8 @@ object nivel2 {
 		game.onCollideDo(personaje, { obstaculo => obstaculo.chocarContra(personaje) })
 		
 		// barras
-		personaje.indiceVidaInicial()
-		game.addVisualIn(barravida.devolviendoVida(personaje.indiceVida()),posicionBarras.posicionVida())
-		game.addVisualIn(barravida.devolviendoMana(personaje.mana()),posicionBarras.posicionMana())
+		barraVida.insertandoBarraVida(personaje)
+		barraMana.insertandoBarraMana(personaje)
 	
 }
 

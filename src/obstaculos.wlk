@@ -1,5 +1,6 @@
 import wollok.game.*
 import personajes.*
+import cosillas.*
 
 class Enemigos{
 	var property position = game.at(0,0)
@@ -13,9 +14,10 @@ class Atacables inherits Enemigos{
 	method danio()
 	method serAtacado(cantidad) {
 		self.life(self.life()-cantidad)
-		game.say(self,"Recibi daño =/")
+		game.say(self,"Recibi daño =/, vida= " + self.life())
 		if(self.life()<=0) {
 			game.removeVisual(self)
+			
 		}
 	}
 	

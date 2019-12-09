@@ -1,26 +1,38 @@
 import objetosVisuales.*
 import wollok.game.*
+import personajes.*
 
-object barravida{
-	//TODO: Pensar una estrategia donde la imagen de la barra se calcule a partir del personaje (y no que el personaje le tenga que avisar cada vez que cambia) [Como el ejemplo de pepita gris - grande]
+
+object barraVida{
+	const property position = game.at(13,14)
+	var property image
 	
-	const vidas = [vida0,vida10,vida25,vida50,vida75,vida100]
-	const manas = [mana0,mana25,mana50,mana75,mana100]
+	method insertandoBarraVida(personaje){
+		if (personaje.vida() < 10) {image = "barravida0.png"}
+		else if (personaje.vida() > 100) {image= "barravida110.png"}
+		else { image = "barravida" + personaje.vida() + ".png"}
+		game.addVisual(self)
+	} 
 	
-	method devolviendoVida(indice)= vidas.get(indice)
-	method devolviendoMana(mana)= manas.get(self.calculandoIndiceMana(mana))
-	method quitandoBarraMana(mana)=game.removeVisual(self.devolviendoMana(mana))
-	method insertandoBarraMana(mana)=game.addVisualIn(self.devolviendoMana(mana),posicionBarras.posicionMana())
-	method calculandoIndiceMana(mana) = self.mana100(mana) + self.mana75(mana) + self.mana50(mana) + self.mana25(mana)
-	
-	method mana100(mana) = if(mana >= 100) {4} else {0}
-	method mana75(mana) = if(mana == 70) {3} else {0}
-	method mana50(mana) = if(mana == 50) {2} else {0}
-	method mana25(mana) = if(mana == 30) {1} else {0}
+	method quitandoBarraVida(){
+		game.removeVisual(self)
+	}
 	
 }
-
-object posicionBarras{
-	method posicionVida() = game.at(13,14)
-	method posicionMana() = game.at(0,14)
+ 
+object barraMana{
+	const property position = game.at(0,14)
+	var property image
+	
+	method insertandoBarraMana(personaje){
+		if (personaje.mana() > 100) {image = "barramana120.png"} 
+		else { image = "barramana" + personaje.mana() + ".png"}
+		game.addVisual(self)
+	} 
+	
+	method quitandoBarraMana(){
+		game.removeVisual(self)
+	}
 }
+
+
