@@ -8,6 +8,7 @@ class Personaje {
 
 	var property position = game.at(0, 2)
 	var posicionAnterior = game.at(0, 17)
+	var property vistaDerecha = true
 	
 	method fuerza()
 
@@ -71,6 +72,7 @@ class Personaje {
 		if (position.x() > 0) {
 			posicionAnterior = position
 			position = position.left(1)
+			vistaDerecha = false
 		}
 	}
 
@@ -79,13 +81,15 @@ class Personaje {
 		if (position.x() < 17) {
 			posicionAnterior = position
 			position = position.right(1)
+			vistaDerecha = true
 		}
 	}
 
 	method subir() {
-		self.verificarMovimiento()
-		posicionAnterior = position
-		position = self.position().up(1)
+		if ( game.colliders(self) != [] and game.uniqueCollider(self).puedoTreparlo() ){
+			posicionAnterior = position
+			position = self.position().up(1)
+		}
 	}
 
 	method volverAPosicionAnterior() {
@@ -195,13 +199,14 @@ object vikingo inherits Personaje {
  	override method lanzarHabilidad(){
  		super()
  		const hacha = new Hacha(position = position)	
-  		hacha.serLanzada(self)
+  		hacha.serLanzada(position,vistaDerecha)
  	} 
 }
 
 class Hacha{
  	var property image = "hacha.png"
  	var property position
+ 	var vistaDerecha = true
  	
  	method serAtacado(cantidad) {}
  	
@@ -209,21 +214,25 @@ class Hacha{
  	
  	method puedoTreparlo() = false
  	
- 	method actualizarPosicion(personaje){
- 		if (personaje.proximoPaso()>0){position = position.right(1)}
- 			else if(self.position().x()==0){ position = game.at(17,position.y())}
- 					else {position = position.left(1)}				
+ 	method actualizarPosicion(){
+ 		if (vistaDerecha){
+ 			position = position.right(1)
+ 		}
+ 		else {
+ 			position = position.left(1)
+ 		}				
  	}
 
- 	method serLanzada(personaje){
- 		position = game.at( personaje.position().x() + personaje.proximoPaso()  , personaje.position().y())
- 		
+ 	method serLanzada(posicion,vista){
+ 		position = posicion
+ 		vistaDerecha = vista
+ 		self.actualizarPosicion()
 		game.addVisual(self)
 		game.onCollideDo(self, { obstaculo => obstaculo.serAtacado(100) })
  		game.sound("lanzarHacha.mp3")
- 		game.schedule(500, {self.actualizarPosicion(personaje)})
- 		game.schedule(1000, {self.actualizarPosicion(personaje)})
- 		game.schedule(1500, {self.actualizarPosicion(personaje)})
+ 		game.schedule(500, {self.actualizarPosicion()})
+ 		game.schedule(1000, {self.actualizarPosicion()})
+ 		game.schedule(1500, {self.actualizarPosicion()})
  		game.schedule(2000, {game.removeVisual(self)})
  	}
  	
