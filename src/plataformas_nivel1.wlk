@@ -148,6 +148,7 @@ object llaveN2{
 		
 	method chocarContra(personaje) {
 		bloqueoNivel2.quitarBloqueo()
+		game.removeVisual(self)
 	}
 }
 
